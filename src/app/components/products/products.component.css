@@ -1,0 +1,26 @@
+.products {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to ensure products move to the next row after 4 items */
+    gap: 10px; /* Add space between products */
+    justify-content: flex-start; /* Align products to the start */
+}
+
+.product {
+    flex: 0 1 calc(25% - 10px); /* Four items per row, accounting for the gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+button {
+    border: 1px solid black;
+    background-color: white;
+}
+
+.size {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Add space between size options */
+}

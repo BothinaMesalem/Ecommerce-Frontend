@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+    <div class="col-md-6 col-lg-4 mt-2">
+      <p class="text-center  mt-2">Add Products</p>
+      <form (ngSubmit)="addProduct()" class="p-4 border rounded ">
+        <div class="mb-3">
+          <label class="form-label">Enter Product Name</label>
+          <input [(ngModel)]="product.ProductName" name="productName" class="form-control" placeholder="Enter name">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Description</label>
+          <input [(ngModel)]="product.ProductDescription" name="ProductDescription" class="form-control" placeholder="Enter Description">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Price</label>
+          <input [(ngModel)]="product.Price" name="Price" type="number" class="form-control" placeholder="Enter price">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Quantity</label>
+          <input [(ngModel)]="product.Stack_qty" name="Quantity" type="Number" class="form-control" placeholder="Quantity">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Image</label>
+          <input (change)="onFileSelected($event)" name="productImage" type="file" placeholder="Image" class="form-control">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Size</label>
+          <input [(ngModel)]="product.size" name="productsize" type="text" class="form-control" placeholder="Enter Size">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter UserId</label>
+          <input [(ngModel)]="product.UserId" name="UserId" type="Number" class="form-control" placeholder="Enter User ID">
+        </div>
+  
+        <button type="submit" class="btn w-100">Add Product</button>
+      </form>
+    </div>
+  </div>
+  

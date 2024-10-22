@@ -1,0 +1,18 @@
+<h3>Shop</h3>
+<div class="products">
+<div *ngFor="let product of products" class="product">
+
+    
+<img [src]="product.image" alt="image" width="340" height="350">
+<p>{{product.productName}}</p>
+<p>{{product.price}}</p>
+<div class="size">
+    <div *ngFor="let size of product.size" >
+        <button>{{size}}</button>
+    
+    </div>
+</div>
+
+
+</div>
+</div>
