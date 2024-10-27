@@ -1,7 +1,8 @@
 .products {
     display: flex;
+    margin-left: 10px;
     flex-wrap: wrap; /* Allow wrapping to ensure products move to the next row after 4 items */
-    gap: 10px; /* Add space between products */
+    gap: 1px; /* Add space between products */
     justify-content: flex-start; /* Align products to the start */
 }
 
@@ -9,18 +10,40 @@
     flex: 0 1 calc(25% - 10px); /* Four items per row, accounting for the gap */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     padding: 10px;
     box-sizing: border-box; /* Ensure padding is included in the total width */
 }
+.product h5{
+    margin-left: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.product p{
+    color: gray;
+    font-weight: bold;
+    margin-left: 10px;
+    
+}
 
 button {
-    border: 1px solid black;
+    border: 1px solid gray;
     background-color: white;
+    color: gray;
+    
 }
 
 .size {
     display: flex;
     flex-direction: row;
-    gap: 10px; /* Add space between size options */
+    gap: 5px; 
+    margin-left: 10px;
+}
+.phome{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+h3{
+    margin-left: 10px;
 }

@@ -1,9 +1,9 @@
 export class Product {
-    productId:Number=0;
+    productId:number=0;
     productName:string="";
     productDescription:string="";
-    price:Number=0;
-    stack_qty:Number=0;
+    price:number=0;
+    stack_qty:number=0;
     image:string="";
     size:string="";
 }

@@ -3,23 +3,20 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavComponent } from '../nav/nav.component';
-import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-allproductseller',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavComponent,RouterLink],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  imports: [FormsModule,CommonModule],
+  templateUrl: './allproductseller.component.html',
+  styleUrl: './allproductseller.component.css'
 })
-export class ProductsComponent implements OnInit {
+export class AllproductsellerComponent implements OnInit {
   products:Product[]=[];
-
   constructor(private productservice:ProductService){}
-
+  
   ngOnInit(): void {
-    this.productservice.getAll().subscribe((data:Product [])=>
+    this.productservice.getAllBySellerId().subscribe((data:Product [])=>
       this.products = data.map(product => ({
         ...product,
         image: this.convertImage(product.image)
@@ -33,6 +30,6 @@ export class ProductsComponent implements OnInit {
   convertImage(base64Image: string): string {
     return `data:image/png;base64,${base64Image}`;
   }
-
+  
 
 }

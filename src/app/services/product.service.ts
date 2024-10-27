@@ -9,12 +9,20 @@ import { CreateProduct } from '../models/create-product';
 export class ProductService {
 
  private baseurl="https://localhost:7100/api/Product/GetAllProduct";
- private createurl="https://localhost:7100/api/Product/CreateProduct"
+ private createurl="https://localhost:7100/api/Product/CreateProduct";
+ private getbyseller="https://localhost:7100/api/Product/GetAllProductBySellerId/1"
+ private productId="https://localhost:7100/api/Product/GetProductbyId";
   constructor(private httpclient:HttpClient) {}
 
   getAll()
   {
      return this.httpclient.get<Product[]>(this.baseurl);
+  }
+  getAllBySellerId(){
+    return this.httpclient.get<Product[]>(this.getbyseller);
+  }
+  getbyproductId(id:number){
+    return this.httpclient.get<Product>(`${this.productId}/${id}`);
   }
   add(addproduct:CreateProduct){
     const formdata=new FormData();

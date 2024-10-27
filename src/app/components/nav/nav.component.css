@@ -1,0 +1,28 @@
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-bar li {
+    /* margin-right: 20px; */
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  .nav-bar li a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .nav-bar .logo {
+    margin-left: 450px;
+    margin-top: 10px;
+    
+  }
+  .nav-bar li a:hover {
+            color: #fb5ce3;
+  }
+  

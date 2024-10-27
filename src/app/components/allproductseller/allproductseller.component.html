@@ -1,0 +1,23 @@
+<table class="product-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Brand</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
+        <td>{{ product.productName }}</td> 
+        <td *ngIf="product.stack_qty > 0" class="status">In Stock ({{product.stack_qty}})</td>
+        <td *ngIf="product.stack_qty <= 0" class="status">In Stock</td>
+        <td>{{ product.price }}$</td>
+        <td>{{ product.size }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

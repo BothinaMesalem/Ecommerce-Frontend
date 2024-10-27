@@ -1,0 +1,20 @@
+<div class="product-details-container">
+    <div class="product-image">
+      <img [src]="product?.image" alt="image" width="500" height="600" />
+    </div>
+  
+    <div class="product-info">
+      <h1 class="product-name">{{ product?.productName }}</h1>
+      <p class="product-price">
+       {{product?.price}}
+      </p>
+      <p class="product-description">{{ product?.productDescription }}</p>
+  
+    
+  
+      <div class="size-options">
+        <span *ngFor="let size of product?.size" class="size-option">{{ size }}</span>
+      </div>
+    </div>
+  </div>
+  
