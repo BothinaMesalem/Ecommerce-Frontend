@@ -11,10 +11,32 @@
       <p class="product-description">{{ product?.productDescription }}</p>
   
     
-  
       <div class="size-options">
-        <span *ngFor="let size of product?.size" class="size-option">{{ size }}</span>
+        <div class="size-buttons">
+          <button
+            *ngFor="let size of product?.size"
+            [ngClass]="{ 'selected': selectedSize === size }"
+            (click)="selectedSize = size"
+            class="size-button"
+          >
+            {{ size }}
+          </button>
+        </div>
       </div>
+      
+      <div class="qandaddd">
+        <div class="quantity-container">
+          <button (click)="minus()" class="quantity-btn">-</button>
+          <p class="quantity-display">{{ quantity }}</p>
+          <button (click)="plus()" class="quantity-btn">+</button>
+        </div>
+  
+        <button class="addtoorder" (click)="addtoorder()">Add To Order</button>
+       
+      </div>
+      <!--End of quantityandadd-->
+
+     
     </div>
   </div>
   

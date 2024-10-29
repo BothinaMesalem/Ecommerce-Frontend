@@ -4,16 +4,23 @@
 <div *ngFor="let product of products" class="product">
 
     
-<img [src]="product.image" alt="image" width="350" height="420">
+<img [routerLink]="['productdetails',product.productId]" [src]="product.image" alt="image" width="350" height="420">
+
 <h5>{{product.productName}}</h5>
 <p>{{product.price}}$</p>
-<div class="size">
-    <div *ngFor="let size of product.size" >
-        <button>{{size}}</button>
-    
+<div class="size-options">
+    <div class="size-buttons">
+      <button
+        *ngFor="let size of product?.size"
+        [ngClass]="{ 'selected': selectedSize === size }"
+        (click)="selectedSize = size"
+        class="size-button"
+      >
+        {{ size }}
+      </button>
     </div>
-</div>
-<button [routerLink]="['productdetails',product.productId]">Go to Details</button>
+  </div>
+<!-- <button (click)="selectandadd(product)">Add To Cart</button> -->
 
 </div>
 </div>
