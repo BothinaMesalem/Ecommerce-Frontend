@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
-import { CreateProduct } from '../models/create-product';
+import { CreateProduct, Updateproduct } from '../models/create-product';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,10 @@ export class ProductService {
 
  private baseurl="https://localhost:7100/api/Product/GetAllProduct";
  private createurl="https://localhost:7100/api/Product/CreateProduct";
- private getbyseller="https://localhost:7100/api/Product/GetAllProductBySellerId/1"
+ private getbyseller="https://localhost:7100/api/Product/GetAllProductBySellerId/3"
  private productId="https://localhost:7100/api/Product/GetProductbyId";
+ private EditQuantity="https://localhost:7100/api/Product/EditQuantity";
+ private DelteProduct="https://localhost:7100/api/Product/DeleteProduct"
   constructor(private httpclient:HttpClient) {}
 
   getAll()
@@ -41,5 +43,12 @@ export class ProductService {
 
 
     return this.httpclient.post(this.createurl, formdata, { responseType: 'text' as 'json' });
+  }
+  update(addproduct:Updateproduct,id:number){
+    return this.httpclient.put(`${this.EditQuantity}/${id}`,addproduct);
+  }
+  Delte(id:number){
+    return this.httpclient.delete(`${this.DelteProduct}/${id}`);
+
   }
 }

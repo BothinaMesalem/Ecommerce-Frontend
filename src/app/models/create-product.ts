@@ -7,3 +7,6 @@ export class CreateProduct {
     size:string="";
     UserId:number=0;
 }
+export class Updateproduct{
+    stack_qty:number=0;
+}

@@ -33,6 +33,9 @@ button {
     color: gray;
     
 }
+.size-buttons{
+margin-left: 20px;
+}
 
 .size {
     display: flex;
@@ -47,3 +50,36 @@ button {
 h3{
     margin-left: 10px;
 }
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .astra-icon {
+    position: absolute;
+    top: 15px; /* Move the icon closer to the top of the image */
+    right: 15px;
+    width: 1px; /* Adjust size */
+    height: 1px;
+   /* Set background to white for contrast */
+   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a lifted effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    padding: 8px 10px;
+   
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-container:hover .astra-icon {
+    opacity: 1; /* Show icon on hover */
+  }
+  svg{
+    width: 20px;
+  
+  }
+  
+ 
+  
