@@ -1,37 +1,67 @@
 .product-table {
-    width: 90%;
-    border-collapse: collapse;
-    margin: 20px 0px;
-    margin-left: 90px;
-    margin-top: 30px;
-    font-size: 16px;
-  }
-  
-  .product-table thead {
-    background-color: #faedeb;
-  }
-  
-  .product-table th, .product-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .product-table img {
-    border-radius: 8px;
-  }
-  
-  .product-table .status {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .product-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .product-table th {
-    color: #333;
-    font-weight: bold;
-  }
-  
+  width: 90%;
+  border-collapse: collapse;
+  margin: 30px auto;
+  font-size: 16px;
+}
+
+.product-table thead {
+  background-color: #faedeb;
+}
+
+.product-table th, .product-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-table img {
+  border-radius: 8px;
+}
+
+.product-table .status {
+  font-weight: bold;
+}
+
+.product-table .in-stock {
+  color: green;
+}
+
+.product-table .out-of-stock {
+  color: red;
+}
+
+.product-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.product-table th {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Button styles */
+.delete-btn {
+  background-color: #e74c3c; /* Red color for delete */
+  color: white;
+  border: none;
+  padding: 8px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+.cant-delete {
+  color: #7f8c8d; /* Gray color for Can't Delete */
+  font-size: 14px;
+  padding: 8px 12px;
+  background-color: #ecf0f1; /* Light background */
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+}

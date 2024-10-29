@@ -8,6 +8,7 @@ import { AddOrderService } from '../../services/add-order.service';
 import { AddOrder, OrderDetails } from '../../models/add-order';
 import { response } from 'express';
 import { error } from 'console';
+import { CreateProduct, Updateproduct } from '../../models/create-product';
 
 @Component({
   selector: 'app-productdetails',
@@ -76,13 +77,31 @@ export class ProductdetailsComponent  implements OnInit {
         order_date:new Date(),
        orderDetails:[orderdetails]
       };
+    
       this.addorderservices.addOrder(neworder).subscribe(response=>{
             console.log("this added succeffly",response);
+            this.editquantity();
+            
       },error=>{
         console.log("error when added",error);
       });
+      
      
       }
+     
+    }
+    editquantity(){
+      if(this.product){
+      const updateproduct:Updateproduct={
+         stack_qty:this.product.stack_qty-this.quantity,
+      };
+      this.productservice.update(updateproduct,this.product.productId).subscribe(response=>{
+        console.log("EDit successfully")
+      },error=>{
+        console.log("error when edit")
+      }) 
+    }
+
     }
 
   }

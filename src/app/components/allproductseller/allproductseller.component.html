@@ -6,6 +6,7 @@
         <th>Status</th>
         <th>Price</th>
         <th>Brand</th>
+        <th>Remove Product</th>
       
       </tr>
     </thead>
@@ -14,9 +15,13 @@
         <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
         <td>{{ product.productName }}</td> 
         <td *ngIf="product.stack_qty > 0" class="status">In Stock ({{product.stack_qty}})</td>
-        <td *ngIf="product.stack_qty <= 0" class="status">In Stock</td>
+        <td *ngIf="product.stack_qty <= 0" class="status">Out of Stock</td>
         <td>{{ product.price }}$</td>
         <td>{{ product.size }}</td>
+        <td>
+          <button *ngIf="product.stack_qty <= 0" (click)="deleteproduct(product.productId)" class="delete-btn">Delete</button>
+          <span *ngIf="product.stack_qty > 0" class="cant-delete">Can't Delete</span>
+        </td>
       </tr>
     </tbody>
   </table>
