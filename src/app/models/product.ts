@@ -7,3 +7,12 @@ export class Product {
     image:string="";
     size:string="";
 }
+
+export class EditProduct{
+    productName:string="";
+    productDescription:string="";
+    price:number=0;
+    stack_qty:number=0;
+    image:File |null=null;
+    size: string[] = [];
+}

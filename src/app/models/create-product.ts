@@ -4,7 +4,7 @@ export class CreateProduct {
     Price:number=0;
     Stack_qty:number=0;
     Image:File |null=null;
-    size:string="";
+    Size:string[]=[];
     UserId:number=0;
 }
 export class Updateproduct{

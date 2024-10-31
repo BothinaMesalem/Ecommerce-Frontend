@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddproductsComponent {
   product: CreateProduct = new CreateProduct();
+  newSize: string = "";
 
   constructor(private productservices: ProductService) {}
 
@@ -21,6 +22,16 @@ export class AddproductsComponent {
     if (file) {
       this.product.Image = file;
     }
+  }
+  addSize() {
+    if (this.newSize) {
+      this.product.Size.push(this.newSize);
+      this.newSize = ""; 
+    }
+  }
+
+  removeSize(index: number) {
+    this.product.Size.splice(index, 1);
   }
 
   addProduct() {
