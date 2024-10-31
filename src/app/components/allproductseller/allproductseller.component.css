@@ -56,6 +56,21 @@
   background-color: #c0392b; /* Darker red on hover */
 }
 
+.Edit-btn{
+    background-color: #e74c3c; /* Red color for delete */
+    color: white;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Edit-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+  }
+
 .cant-delete {
   color: #7f8c8d; /* Gray color for Can't Delete */
   font-size: 14px;

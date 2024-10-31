@@ -1,0 +1,51 @@
+
+<div class="d-flex justify-content-center">
+    <div class="col-md-6 col-lg-4 mt-2">
+      <p class="text-center  mt-2">Edit Products</p>
+      <form *ngIf="upproduct" (ngSubmit)="editProduct()" class="p-4 border rounded ">
+
+        <div class="mb-3">
+          <label class="form-label">Enter Product Name</label>
+          <input [(ngModel)]="upproduct.productName" name="productName" class="form-control" placeholder="Enter name">
+
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Description</label>
+          <input [(ngModel)]="upproduct.productDescription" name="ProductDescription" class="form-control" placeholder="Enter Description">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Price</label>
+          <input [(ngModel)]="upproduct.price" name="Price" type="number" class="form-control" placeholder="Enter price">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Quantity</label>
+          <input [(ngModel)]="upproduct.stack_qty" name="Quantity" type="Number" class="form-control" placeholder="Quantity">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Enter Product Image</label>
+          <input (change)="onFileSelected($event)" name="productImage" type="file" placeholder="Image" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Enter Product Sizes</label>
+            <div class="input-group">
+              <input [(ngModel)]="newSize" name="newSize" class="form-control" placeholder="Enter Size">
+              <button type="button" class="btn btn-outline-secondary" (click)="addSize()">Add Size</button>
+            </div>
+            <ul class="list-group mt-2">
+              <li class="list-group-item" *ngFor="let size of upproduct.size; let i = index">
+                {{ size }}
+                <button title="removeSize" type="button" class="btn-close float-end" (click)="removeSize(i)"></button>
+              </li>
+            </ul>
+          </div>
+  
+      
+        <button type="submit" class="btn w-100">Edit Product</button>
+      </form>
+    </div>
+  </div>
+  

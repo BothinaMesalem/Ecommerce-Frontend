@@ -7,6 +7,7 @@
         <th>Price</th>
         <th>Brand</th>
         <th>Remove Product</th>
+        <th>Edit Product</th>
       
       </tr>
     </thead>
@@ -21,6 +22,9 @@
         <td>
           <button *ngIf="product.stack_qty <= 0" (click)="deleteproduct(product.productId)" class="delete-btn">Delete</button>
           <span *ngIf="product.stack_qty > 0" class="cant-delete">Can't Delete</span>
+        </td>
+        <td>
+          <button  [routerLink]="['editproduct', product.productId]"  class="Edit-btn">Edit</button>
         </td>
       </tr>
     </tbody>

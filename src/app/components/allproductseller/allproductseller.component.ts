@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-allproductseller',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterLink],
   templateUrl: './allproductseller.component.html',
   styleUrl: './allproductseller.component.css'
 })
