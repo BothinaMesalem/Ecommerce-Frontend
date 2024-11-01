@@ -1,0 +1,36 @@
+.custom-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.custom-table th, .custom-table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.out-of-stock {
+    color: red;
+}
+
+.cant-delete {
+    color: gray;
+    font-style: italic;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #e1eaf3;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #dc3545; 
+    border: none;
+}

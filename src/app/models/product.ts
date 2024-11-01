@@ -16,3 +16,14 @@ export class EditProduct{
     image:File |null=null;
     size: string[] = [];
 }
+
+export class AllProductWithSeller{
+    productId:number=0;
+    productName:string="";
+    productDescription:string="";
+    price:number=0;
+    stack_qty:number=0;
+    image:string ="";
+    size:string[]=[];
+    userName:string="";
+}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EditProduct, Product } from '../models/product';
+import { AllProductWithSeller, EditProduct, Product } from '../models/product';
 import { CreateProduct, Updateproduct } from '../models/create-product';
 import { Observable } from 'rxjs';
 
@@ -16,6 +16,7 @@ export class ProductService {
  private EditQuantity="https://localhost:7100/api/Product/EditQuantity";
  private DelteProduct="https://localhost:7100/api/Product/DeleteProduct";
  private EditProduct="https://localhost:7100/api/Product/EditProduct";
+ private getallPwithS="https://localhost:7100/api/Product/GetAllProductwithSellerName"
   constructor(private httpclient:HttpClient) {}
 
   getAll()
@@ -81,6 +82,9 @@ export class ProductService {
   }
   getProductById(id: number): Observable<EditProduct> {
     return this.httpclient.get<EditProduct>(`https://localhost:7100/api/Product/GetProductbyId/${id}`);
+  }
+  getallproductwithseller(){
+    return this.httpclient.get<AllProductWithSeller[]>(this.getallPwithS)
   }
   
 }
