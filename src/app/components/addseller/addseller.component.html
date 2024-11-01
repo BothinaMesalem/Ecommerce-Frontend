@@ -1,0 +1,19 @@
+<p>Add Seller</p>
+<form (ngSubmit)="add()">
+    <div class="form-group">
+        <label for="userName">Name</label>
+        <input [(ngModel)]="addseller.userName" id="userName" name="userName" placeholder="Enter name" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input [(ngModel)]="addseller.email" id="email" name="email" placeholder="Enter email" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input [(ngModel)]="addseller.password" id="password" name="password" type="password" placeholder="Enter password" class="form-control">
+    </div>
+
+    <button type="submit" class="btn-submit">Add Seller</button>
+</form>

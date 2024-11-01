@@ -1,32 +1,31 @@
+<div class="button-container">
+  <button class="add-product-button" [routerLink]="['addproduct']">Add Product</button>
+</div>
 <table class="product-table">
     <thead>
-      <tr>
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Status</th>
-        <th>Price</th>
-        <th>Brand</th>
-        <th>Remove Product</th>
-        <th>Edit Product</th>
-      
-      </tr>
+        <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Remove Product</th>
+            <th>Edit Product</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
-        <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
-        <td>{{ product.productName }}</td> 
-        <td *ngIf="product.stack_qty > 0" class="status">In Stock ({{product.stack_qty}})</td>
-        <td *ngIf="product.stack_qty <= 0" class="status">Out of Stock</td>
-        <td>{{ product.price }}$</td>
-        <td>{{ product.size }}</td>
-        <td>
-          <button *ngIf="product.stack_qty <= 0" (click)="deleteproduct(product.productId)" class="delete-btn">Delete</button>
-          <span *ngIf="product.stack_qty > 0" class="cant-delete">Can't Delete</span>
-        </td>
-        <td>
-          <button  [routerLink]="['editproduct', product.productId]"  class="Edit-btn">Edit</button>
-        </td>
-      </tr>
+        <tr *ngFor="let product of products">
+            <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
+            <td>{{ product.productName }}</td>
+            <td *ngIf="product.stack_qty > 0" class="status">In Stock ({{ product.stack_qty }})</td>
+            <td *ngIf="product.stack_qty <= 0" class="status out-of-stock">Out of Stock</td>
+            <td>{{ product.price }}$</td>
+            <td>
+                <button *ngIf="product.stack_qty <= 0" (click)="deleteproduct(product.productId)" class="delete-btn">Delete</button>
+                <span *ngIf="product.stack_qty > 0" class="cant-delete">Can't Delete</span>
+            </td>
+            <td>
+                <button [routerLink]="['editproduct', product.productId]" class="edit-btn">Edit</button>
+            </td>
+        </tr>
     </tbody>
-  </table>
-  
+</table>

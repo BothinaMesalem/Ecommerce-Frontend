@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './addproducts.component.html',
-  styleUrls: ['./addproducts.component.css'] // Correct styleUrls
+  styleUrls: ['./addproducts.component.css'] 
 })
 export class AddproductsComponent {
   product: CreateProduct = new CreateProduct();
