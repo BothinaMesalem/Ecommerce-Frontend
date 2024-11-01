@@ -1,0 +1,22 @@
+<div class="header-row">
+    <h2>All Sellers on this Website</h2>
+    <button class="add-seller-button" [routerLink]="['addseller']">Add Seller</button>
+</div>
+<table class="table table-bordered table-striped custom-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Delete Seller</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let seller of allseller">
+            <td data-label="Username">{{ seller.userName }}</td>
+            <td data-label="Email">{{ seller.email }}</td>
+            <td>
+                <button (click)="delete(seller.userId)" class="delete-button">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
