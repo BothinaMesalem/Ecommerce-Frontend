@@ -6,6 +6,8 @@ import { ProductdetailsComponent } from './components/productdetails/productdeta
 import { EditproductComponent } from './components/editproduct/editproduct.component';
 import { AllsellerComponent } from './components/allseller/allseller.component';
 import { AddsellerComponent } from './components/addseller/addseller.component';
+import { AllproductwithsellernameComponent } from './components/allproductwithsellername/allproductwithsellername.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     {path:"products",component:ProductsComponent},
@@ -15,4 +17,6 @@ export const routes: Routes = [
     {path:"allproductseller/editproduct/:id",component:EditproductComponent},
     {path:"allseller",component:AllsellerComponent},
     {path:"allseller/addseller",component:AddsellerComponent},
+    {path:"allproductwithsellername",component:AllproductwithsellernameComponent},
+    {path:"Home",component:HomeComponent}
 ];
