@@ -1,0 +1,61 @@
+<div class="cart-container">
+    <h2>Cart</h2>
+    
+    <div class="cart-content">
+    
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <ng-container *ngFor="let order of orders">
+          
+            <tr>
+              <td colspan="4" class="order-date">{{ order.order_date | date: 'MMMM d, y' }}</td>
+            </tr>
+            
+            <tr *ngFor="let od of order.orderDetail" class="cart-item-row">
+              <td class="product-details">
+                <button class="remove-item">×</button>
+                <img [src]="od.image" alt="Product Image" class="product-image">
+                <div class="product-info">
+                  <p class="product-name">{{ od.productName }} </p>
+                  <p class="product-size">Size: {{ od.size }}</p>
+                </div>
+              </td>
+              <td class="product-price">${{ od.orderPrice }}</td>
+              <td>
+                <div class="quantity-control">
+                  <button (click)="decreaseQuantity(order.orderId, od.orderDetailId, od.quantity, od)">-</button>
+                  <span>{{ od.quantity }}</span> 
+                  <button (click)="increaseQuantity(order.orderId, od.orderDetailId, od.quantity, od)">+</button>
+                </div>
+              </td>
+              <td class="product-subtotal">${{ od.orderPrice * od.quantity }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+  
+      <!-- Cart Totals -->
+      <div class="cart-totals">
+        <div class="cartName">
+            <h3>Cart totals</h3>
+        </div>
+      
+        <p class="subtotal">Subtotal: ${{ getAllOrdersTotal() }}</p>
+        <hr>
+        <p class="total">Total: ${{ getAllOrdersTotal() }}</p>
+        <hr>
+        <p class="coupon">Have a coupon?</p>
+        <button class="checkout-button">Proceed to checkout</button>
+      </div>      
+    </div>
+  </div>
+  
