@@ -8,6 +8,7 @@ import { AllsellerComponent } from './components/allseller/allseller.component';
 import { AddsellerComponent } from './components/addseller/addseller.component';
 import { AllproductwithsellernameComponent } from './components/allproductwithsellername/allproductwithsellername.component';
 import { HomeComponent } from './components/home/home.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
     {path:"products",component:ProductsComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path:"allseller",component:AllsellerComponent},
     {path:"allseller/addseller",component:AddsellerComponent},
     {path:"allproductwithsellername",component:AllproductwithsellernameComponent},
-    {path:"Home",component:HomeComponent}
+    {path:"Home",component:HomeComponent},
+    {path:"shoppingcart",component:CartComponent}
 ];
