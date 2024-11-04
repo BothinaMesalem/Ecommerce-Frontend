@@ -3,6 +3,9 @@ import { Order, OrderDeatailquantity, OrderDetail, OrderQuantityDto } from '../.
 import { AddOrderService } from '../../services/add-order.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
+import { error } from 'console';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-cart',
@@ -66,4 +69,25 @@ export class CartComponent implements OnInit {
   increaseQuantity(orderId: number, orderDetailId: number, currentQuantity: number, orderDetail: OrderDetail) {
     this.updateQuantity(orderId, orderDetailId, currentQuantity + 1, orderDetail);
   }
+  delete(id:number){
+    this.orderServices.Delete(id).subscribe(response=>{
+      console.log("remove succes",response);
+      this.orders=this.orders.filter(od=>od.orderId !==id)
+      Swal.fire(
+        'Deleted!',
+        'The order has been deleted.',
+        'success'
+      );
+    },
+    error => {
+      console.log("Can't delete", error);
+      // Show error message
+      Swal.fire(
+        'Error!',
+        'There was an issue deleting the order.',
+        'error'
+      );
+    }
+  );
+}
 }

@@ -22,7 +22,7 @@
             
             <tr *ngFor="let od of order.orderDetail" class="cart-item-row">
               <td class="product-details">
-                <button class="remove-item">×</button>
+                <button (click)="delete(order.orderId)" class="remove-item">×</button>
                 <img [src]="od.image" alt="Product Image" class="product-image">
                 <div class="product-info">
                   <p class="product-name">{{ od.productName }} </p>

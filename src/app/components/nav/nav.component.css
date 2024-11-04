@@ -25,4 +25,39 @@
   .nav-bar li a:hover {
             color: #fb5ce3;
   }
+  .basket-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 550px !important;
+  }
+  
+  .basket-icon {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  svg{
+    width: 20px ;
+    height: 20px;
+  }
+  
+  .count-badge {
+    position: absolute;
+    top: -7px;
+    right: -5px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   
