@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
 import Swal from 'sweetalert2'
+import { RouterLink } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,RouterLink,FooterComponent],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
@@ -81,7 +83,6 @@ export class CartComponent implements OnInit {
     },
     error => {
       console.log("Can't delete", error);
-      // Show error message
       Swal.fire(
         'Error!',
         'There was an issue deleting the order.',
