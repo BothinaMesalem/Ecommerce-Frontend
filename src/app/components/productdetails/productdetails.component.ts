@@ -9,11 +9,13 @@ import { AddOrder, OrderDetails } from '../../models/add-order';
 import { response } from 'express';
 import { error } from 'console';
 import { CreateProduct, Updateproduct } from '../../models/create-product';
+import { FproductComponent } from '../fproduct/fproduct.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-productdetails',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,FproductComponent,FooterComponent],
   templateUrl: './productdetails.component.html',
   styleUrl: './productdetails.component.css'
 })

@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6"> <!-- Adjust width by changing col-md-6 to any desired width -->
+            <form (ngSubmit)="Add()">
+                <h3 class="my-4">Customer Information</h3>
+                <div class="form-group mb-4">
+                    <input [(ngModel)]="checkout.email" id="email" name="email" placeholder="Username or Email Address *" class="form-control" required>
+                </div>
+
+                <h3 class="my-4">Billing Details</h3>
+                <div class="row">
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.fName" id="fName" name="fName" placeholder="First Name *" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.lName" id="lName" name="lName" type="text" placeholder="Last Name *" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <select [(ngModel)]="checkout.country" id="Country" name="country" class="form-control" title="Country" required>
+                        <option value="" disabled selected>Country / Region *</option>
+                        <option *ngFor="let countryKey of getCountryKeys()" [value]="countryKey.toString()">
+                            {{ getCountryValue(countryKey) }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-4">
+                    <input [(ngModel)]="checkout.streetNumberandName" id="streetNumberandName" name="streetNumberandName" placeholder="House Number and Street Name *" class="form-control" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.city" id="city" name="city" placeholder="Town / City *" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.state" id="state" name="state" type="text" placeholder="State *" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.zipCode" id="zipCode" name="zipCode" placeholder="ZIP Code *" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 form-group mb-4">
+                        <input [(ngModel)]="checkout.phone" id="phone" name="phone" placeholder="Phone *" class="form-control" required>
+                    </div>
+                </div>
+
+                <h3 class="my-4">Additional Information</h3>
+                <div class="form-group mb-4">
+                    <textarea [(ngModel)]="checkout.info" id="info" name="info" placeholder="Notes about your order, e.g., special notes for delivery." class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark  mt-4">Place Order ${{ getAllOrdersTotal() }}</button>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

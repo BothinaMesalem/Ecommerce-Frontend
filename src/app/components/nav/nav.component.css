@@ -29,7 +29,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: -20px;
     margin-left: 550px !important;
   }
   
@@ -42,11 +42,12 @@
   svg{
     width: 20px ;
     height: 20px;
+    margin-top: -30px;
   }
   
   .count-badge {
     position: absolute;
-    top: -7px;
+    top: -17px;
     right: -5px;
     background-color: black;
     color: white;

@@ -9,6 +9,8 @@ import { AddsellerComponent } from './components/addseller/addseller.component';
 import { AllproductwithsellernameComponent } from './components/allproductwithsellername/allproductwithsellername.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FproductComponent } from './components/fproduct/fproduct.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 export const routes: Routes = [
     {path:"products",component:ProductsComponent},
@@ -20,5 +22,10 @@ export const routes: Routes = [
     {path:"allseller/addseller",component:AddsellerComponent},
     {path:"allproductwithsellername",component:AllproductwithsellernameComponent},
     {path:"Home",component:HomeComponent},
-    {path:"shoppingcart",component:CartComponent}
+    {path:"shoppingcart",component:CartComponent},
+    {path:"fproduct",component:FproductComponent},
+    {path:"Home/productdetails/:id",component:ProductdetailsComponent},
+    {path:"shoppingcart/checkout",component:CheckoutComponent},
+    {path:"",component:HomeComponent},
 ];
+

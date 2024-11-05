@@ -243,3 +243,13 @@ button:hover {
     font-size: 1em;
     color: #888;
 }
+.productName{
+  text-align: center;
+  margin-top: 50px;
+}
+.productName p{
+  color: grey;
+}
+.productName h2{
+  margin-top: -10px;
+}

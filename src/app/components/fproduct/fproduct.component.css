@@ -1,0 +1,83 @@
+
+.products {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content:center;
+    margin-top: 25px;
+    width: 1300px;
+    margin-left:120px;
+    margin-bottom: 70px;
+}
+.product {
+    flex: 0 1 calc(23% - 10px);
+    display: flex;
+    flex-direction: column;
+}
+.product h5{
+    margin-left: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.product p{
+    color: gray;
+    font-weight: bold;
+    margin-left: 10px;
+    
+}
+
+button {
+    border: 1px solid gray;
+    background-color: white;
+    color: gray;
+    
+}
+.size-buttons{
+margin-left: 20px;
+}
+
+.size {
+    display: flex;
+    flex-direction: row;
+    gap: 5px; 
+    margin-left: 10px;
+}
+.phome{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+h3{
+    margin-left: 10px;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+  
+  }
+  
+  .astra-icon {
+    position: absolute;
+    top: 10px; 
+    right: 30px;
+    width: 1px; 
+    height: 1px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    padding: 8px 10px;
+   
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-container:hover .astra-icon {
+    opacity: 1; 
+  }
+  svg{
+    width: 20px;
+  
+  }
+  
+ 
+  

@@ -1,33 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { NavComponent } from '../nav/nav.component';
-import { RouterLink } from '@angular/router';
 import { AddOrderService } from '../../services/add-order.service';
 import { AddOrder, OrderDetails } from '../../models/add-order';
 import { Updateproduct } from '../../models/create-product';
-import { FooterComponent } from '../footer/footer.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-lproduct',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavComponent,RouterLink,FooterComponent],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  imports: [CommonModule,FormsModule,RouterLink],
+  templateUrl: './lproduct.component.html',
+  styleUrl: './lproduct.component.css'
 })
-export class ProductsComponent implements OnInit {
+export class LproductComponent implements OnInit {
   products:Product[]=[];
   selectedProduct ?:Product;
   orderPrice: number = 0;
   quantity: number = 1;
   selectedSize: string = "";
-
-  constructor(private productservice:ProductService,private addorderservices:AddOrderService){}
-
+  
+  constructor(private productServices:ProductService,private addorderservices:AddOrderService){}
+  
   ngOnInit(): void {
-    this.productservice.getAll().subscribe((data:Product [])=>
+    this.productServices.getLastproduct().subscribe((data:Product [])=>
       this.products = data.map(product => ({
         ...product,
         image: this.convertImage(product.image)
@@ -41,22 +39,21 @@ export class ProductsComponent implements OnInit {
   convertImage(base64Image: string): string {
     return `data:image/png;base64,${base64Image}`;
   }
-
   selectProduct(product: Product): void {
     this.selectedProduct = product;
     console.log("this is selected");
   }
-
+  
   addtocart(): void {
     if (this.selectedProduct) {
       const orprice=this.selectedProduct.price*this.quantity;
-
+  
       const orderdetails:OrderDetails={
         orderPrice:this.selectedProduct.price,
         quantity:this.quantity,
         productId:this.selectedProduct.productId,
         size:this.selectedSize,
-
+  
       }
       const neworder :AddOrder ={
         totalamount:orprice,
@@ -89,14 +86,13 @@ export class ProductsComponent implements OnInit {
     const updateproduct:Updateproduct={
        stack_qty:this.selectedProduct.stack_qty-this.quantity,
     };
-    this.productservice.update(updateproduct,this.selectedProduct.productId).subscribe(response=>{
+    this.productServices.update(updateproduct,this.selectedProduct.productId).subscribe(response=>{
       console.log("EDit successfully")
     },error=>{
       console.log("error when edit")
     }) 
   }
-
+  
   }
-
-
+  
 }

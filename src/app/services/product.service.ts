@@ -16,7 +16,9 @@ export class ProductService {
  private EditQuantity="https://localhost:7100/api/Product/EditQuantity";
  private DelteProduct="https://localhost:7100/api/Product/DeleteProduct";
  private EditProduct="https://localhost:7100/api/Product/EditProduct";
- private getallPwithS="https://localhost:7100/api/Product/GetAllProductwithSellerName"
+ private getallPwithS="https://localhost:7100/api/Product/GetAllProductwithSellerName";
+ private getFroduct="https://localhost:7100/api/Product/GetFourProducts";
+ private getlproduct="https://localhost:7100/api/Product/GetLastFourProducts";
   constructor(private httpclient:HttpClient) {}
 
   getAll()
@@ -85,6 +87,12 @@ export class ProductService {
   }
   getallproductwithseller(){
     return this.httpclient.get<AllProductWithSeller[]>(this.getallPwithS)
+  }
+  getFirstproduct(){
+    return this.httpclient.get<Product[]>(this.getFroduct);
+  }
+  getLastproduct(){
+    return this.httpclient.get<Product[]>(this.getlproduct);
   }
   
 }
