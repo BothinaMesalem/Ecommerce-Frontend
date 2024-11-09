@@ -15,6 +15,13 @@ export class OrderDetail{
     image:string="";
 
 }
+export class OrderSeller{
+    orderId:number=0;
+    totalamount:number=0;
+    userId:number=0;
+    order_date:Date=new Date;
+    orderDetails:OrderDetail[]=[];
+}
 export class OrderQuantityDto {
     orderId: number = 0;
     orderDetailqty: OrderDeatailquantity[] = [];

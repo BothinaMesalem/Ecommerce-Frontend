@@ -13,6 +13,8 @@ import { FproductComponent } from './components/fproduct/fproduct.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { EditSprofileComponent } from './components/edit-sprofile/edit-sprofile.component';
 import { EditCprofileComponent } from './components/edit-cprofile/edit-cprofile.component';
+import { GetallordertosellerComponent } from './components/getallordertoseller/getallordertoseller.component';
+
 
 export const routes: Routes = [
     {path:"products",component:ProductsComponent},
@@ -30,6 +32,7 @@ export const routes: Routes = [
     {path:"shoppingcart/checkout",component:CheckoutComponent},
     {path:"editsprofile/:id",component:EditSprofileComponent},
     {path:"editcprofile/:id",component:EditCprofileComponent},
+    {path:"allordertoseller/:id",component:GetallordertosellerComponent},
     {path:"",component:HomeComponent},
 ];
 
