@@ -8,3 +8,7 @@ export class AddSeller{
     email:string="";
     password:string="";
 }
+export class EditSeller{
+    userName:string="";
+    email:string="";
+}

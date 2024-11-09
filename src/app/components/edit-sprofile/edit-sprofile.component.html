@@ -1,0 +1,16 @@
+<div class="container vh-90 mt-5 d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col-lg-4">
+        <h3 class="text-center mb-3">Edit Profile</h3>
+        <form *ngIf="upSeller" (ngSubmit)="EditSeller()" class="border p-4 rounded shadow">
+            <div class="mb-3">
+                <label class="form-label">Enter Product Name</label>
+                <input [(ngModel)]="upSeller.userName" name="userName" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Product Description</label>
+                <input [(ngModel)]="upSeller.email" name="email" class="form-control" placeholder="Enter Description">
+            </div>
+            <button type="submit" class="btn  w-100">Edit Profile</button>
+        </form>
+    </div>
+</div>
