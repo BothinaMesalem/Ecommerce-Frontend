@@ -11,6 +11,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FproductComponent } from './components/fproduct/fproduct.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { EditSprofileComponent } from './components/edit-sprofile/edit-sprofile.component';
+import { EditCprofileComponent } from './components/edit-cprofile/edit-cprofile.component';
 
 export const routes: Routes = [
     {path:"products",component:ProductsComponent},
@@ -26,6 +28,8 @@ export const routes: Routes = [
     {path:"fproduct",component:FproductComponent},
     {path:"Home/productdetails/:id",component:ProductdetailsComponent},
     {path:"shoppingcart/checkout",component:CheckoutComponent},
+    {path:"editsprofile/:id",component:EditSprofileComponent},
+    {path:"editcprofile/:id",component:EditCprofileComponent},
     {path:"",component:HomeComponent},
 ];
 
