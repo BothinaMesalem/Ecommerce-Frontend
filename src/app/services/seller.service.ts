@@ -11,6 +11,8 @@ export class SellerService {
   private removeseller="https://localhost:7100/api/Seller/DeleteSeller";
   private getseller="https://localhost:7100/api/Seller/GetSellerbyId"
   private upseller="https://localhost:7100/api/Seller/EditSellerProfile"
+  private countOrder="https://localhost:7100/api/Order/GetordersCounttoseller";
+  private CountProduct="https://localhost:7100/api/Product/GetCountOfProductsbysellerid"
 
 
 
@@ -31,6 +33,14 @@ export class SellerService {
   Update(editseller:EditSeller,id:number){
     return this.httpclient.put(`${this.upseller}/${id}`,editseller);
   }
+  GetCountofOrders(id:number){
+    return this.httpclient.get<number>(`${this.countOrder}/${id}`);
+  }
+  GetCountofProducts(id:number){
+    return this.httpclient.get<number>(`${this.CountProduct}/${id}`);
+  }
+  
+
 
 
 }

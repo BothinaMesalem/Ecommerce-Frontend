@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AddOrder, OrderDetails } from '../models/add-order';
-import { Order, OrderDeatailquantity, OrderQuantityDto } from '../models/order';
+import { Order, OrderDeatailquantity, OrderQuantityDto, OrderSeller } from '../models/order';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class AddOrderService {
   private editqty="https://localhost:7100/api/Order/EditQuantity";
   private Deleteurl="https://localhost:7100/api/Order/DeleteOrder";
   private ordercount="https://localhost:7100/api/Order/GetCountByUserId";
+  private getall="https://localhost:7100/api/Order/getAllOrderToseller"
   constructor(private httpclient:HttpClient) { }
   addOrder(addorder:AddOrder){
 
@@ -30,6 +31,9 @@ export class AddOrderService {
   }
   GetCount(id: number): Observable<number> {
     return this.httpclient.get<number>(`${this.ordercount}/${id}`);
+  }
+  GetAllOrder(id:number){
+    return this.httpclient.get<OrderSeller[]>(`${this.getall}/${id}`)
   }
 
 
