@@ -16,12 +16,16 @@ import { EditCprofileComponent } from './components/edit-cprofile/edit-cprofile.
 import { GetallordertosellerComponent } from './components/getallordertoseller/getallordertoseller.component';
 import { authGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Home', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'products/productdetails/:id', component: ProductdetailsComponent },
+  {path:"about",component:AboutComponent},
+  {path:"contact",component:ContactComponent},
   
   // For Customer
   { path: 'shoppingcart', component: CartComponent, canActivate: [authGuard], data: { role: 'Customer' }},
