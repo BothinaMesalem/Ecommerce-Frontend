@@ -14,25 +14,32 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { EditSprofileComponent } from './components/edit-sprofile/edit-sprofile.component';
 import { EditCprofileComponent } from './components/edit-cprofile/edit-cprofile.component';
 import { GetallordertosellerComponent } from './components/getallordertoseller/getallordertoseller.component';
-
+import { authGuard } from './guards/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-    {path:"products",component:ProductsComponent},
-    {path:"allproductseller/addproduct",component:AddproductsComponent},
-    {path:"allproductseller",component:AllproductsellerComponent},
-    {path:"products/productdetails/:id",component:ProductdetailsComponent},
-    {path:"allproductseller/editproduct/:id",component:EditproductComponent},
-    {path:"allseller",component:AllsellerComponent},
-    {path:"allseller/addseller",component:AddsellerComponent},
-    {path:"allproductwithsellername",component:AllproductwithsellernameComponent},
-    {path:"Home",component:HomeComponent},
-    {path:"shoppingcart",component:CartComponent},
-    {path:"fproduct",component:FproductComponent},
-    {path:"Home/productdetails/:id",component:ProductdetailsComponent},
-    {path:"shoppingcart/checkout",component:CheckoutComponent},
-    {path:"editsprofile/:id",component:EditSprofileComponent},
-    {path:"editcprofile/:id",component:EditCprofileComponent},
-    {path:"allordertoseller/:id",component:GetallordertosellerComponent},
-    {path:"",component:HomeComponent},
+  { path: '', component: HomeComponent },
+  { path: 'Home', component: HomeComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'products/productdetails/:id', component: ProductdetailsComponent },
+  
+  // For Customer
+  { path: 'shoppingcart', component: CartComponent, canActivate: [authGuard], data: { role: 'Customer' }},
+  { path: 'shoppingcart/checkout', component: CheckoutComponent, canActivate: [authGuard], data: { role: 'Customer' }},
+  { path: 'editcprofile/:id', component: EditCprofileComponent, canActivate: [authGuard], data: { role: 'Customer' }},
+  
+  // For Seller
+  { path: 'products', component: ProductsComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'allproductseller', component: AllproductsellerComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'allproductseller/addproduct', component: AddproductsComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'allproductseller/editproduct/:id', component: EditproductComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'allordertoseller/:id', component: GetallordertosellerComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'editsprofile/:id', component: EditSprofileComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  
+  // For Admin
+  { path: 'allseller', component: AllsellerComponent, canActivate: [authGuard], data: { role: 'Admin' }},
+  { path: 'allproductwithsellername', component: AllproductwithsellernameComponent, canActivate: [authGuard], data: { role: 'Admin' }},
+  
+  // General
+  { path: 'login', component: LoginComponent },
 ];
-
