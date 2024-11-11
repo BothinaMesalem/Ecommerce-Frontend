@@ -20,7 +20,7 @@ export class LoginComponent {
 
   login(): void {
     this.authService.login(this.accountDto).subscribe({
-      next: () => this.router.navigate(['/products']),
+      next: () => this.router.navigate(['/Home']),
        error: (err) => {
       // Display the real error message from the backend
       this.errorMessage = err.message || 'An unknown error occurred. Please try again.';

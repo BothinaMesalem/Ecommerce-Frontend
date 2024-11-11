@@ -11,7 +11,7 @@ export class ProductService {
 
  private baseurl="https://localhost:7100/api/Product/GetAllProduct";
  private createurl="https://localhost:7100/api/Product/CreateProduct";
- private getbyseller="https://localhost:7100/api/Product/GetAllProductBySellerId/3"
+ private getbyseller="https://localhost:7100/api/Product/GetAllProductBySellerId"
  private productId="https://localhost:7100/api/Product/GetProductbyId";
  private EditQuantity="https://localhost:7100/api/Product/EditQuantity";
  private DelteProduct="https://localhost:7100/api/Product/DeleteProduct";
@@ -25,8 +25,8 @@ export class ProductService {
   {
      return this.httpclient.get<Product[]>(this.baseurl);
   }
-  getAllBySellerId(){
-    return this.httpclient.get<Product[]>(this.getbyseller);
+  getAllBySellerId(id:number){
+    return this.httpclient.get<Product[]>(`${this.getbyseller}/${id}`);
   }
   getbyproductId(id:number){
     return this.httpclient.get<Product>(`${this.productId}/${id}`);

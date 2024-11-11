@@ -1,64 +1,108 @@
 .nav-bar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar li a {
+  text-decoration: none;
+  color: black;
+  margin-left: 20px;
+}
+
+.nav-bar li a:hover {
+  color: #fb5ce3;
+}
+
+.nav-bar .logo {
+  margin: 0 auto;
+}
+
+.basket-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.basket-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.count-badge {
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.user-icon {
+  font-size: 18px;
+  color: black;
+}
+
+.user-menu .dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  min-width: 150px;
+  right: 0;
+  top: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.user-menu:hover .dropdown {
+  display: block;
+}
+
+.dropdown .profile-link,
+.dropdown .logout-link {
+  padding: 12px 16px;
+  color: black;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+.dropdown .profile-link:hover,
+.dropdown .logout-link:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .nav-bar li {
-    /* margin-right: 20px; */
-    margin-top: 10px;
-    margin-left: 15px;
-  }
-  .nav-bar li a{
-    text-decoration: none;
-    color: black;
-  }
-  
-  .nav-bar .logo {
-    margin-left: 450px;
-    margin-top: 10px;
-    
-  }
-  .nav-bar li a:hover {
-            color: #fb5ce3;
-  }
+
   .basket-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-top: -20px;
-    margin-left: 550px !important;
+    margin-top: 20px; 
   }
-  
-  .basket-icon {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
+
+  .logo {
+    margin-top: 20px; 
   }
-  svg{
-    width: 20px ;
-    height: 20px;
-    margin-top: -30px;
-  }
-  
-  .count-badge {
-    position: absolute;
-    top: -17px;
-    right: -5px;
-    background-color: black;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  
+}

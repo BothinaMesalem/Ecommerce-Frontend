@@ -8,21 +8,32 @@ import { error } from 'console';
 import Swal from 'sweetalert2'
 import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterLink,FooterComponent],
+  imports: [FormsModule, CommonModule,RouterLink,FooterComponent,NavComponent],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   orders: Order[] = [];
-  userid: number = 3;
+  userid: number = 0;
 
   constructor(private orderServices: AddOrderService) {}
 
   ngOnInit(): void {
+    const storedUserId = localStorage.getItem('userId'); 
+    if (storedUserId) {
+      this.userid = parseInt(storedUserId, 10);
+      this.getall();
+      
+    } else {
+      console.error("Seller ID not found in localStorage");
+    }
+  }
+  getall(){
     this.orderServices.getAll(this.userid).subscribe((data: Order[]) => {
       this.orders = data.map(order => ({
         ...order,
@@ -33,6 +44,7 @@ export class CartComponent implements OnInit {
       }));
     });
   }
+  
 
   convertImage(base64Image: string): string {
     return `data:image/png;base64,${base64Image}`;

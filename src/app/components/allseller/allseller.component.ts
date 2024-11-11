@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
 import { RouterLink } from '@angular/router';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-allseller',
   standalone: true,
-  imports: [FormsModule,CommonModule,RouterLink],
+  imports: [FormsModule,CommonModule,RouterLink,NavComponent],
   templateUrl: './allseller.component.html',
   styleUrl: './allseller.component.css'
 })
