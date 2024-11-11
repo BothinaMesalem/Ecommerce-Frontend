@@ -4,11 +4,12 @@ import { SellerService } from '../../services/seller.service';
 import { response } from 'express';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-addseller',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NavComponent],
   templateUrl: './addseller.component.html',
   styleUrl: './addseller.component.css'
 })

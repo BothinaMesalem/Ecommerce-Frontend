@@ -1,0 +1,11 @@
+a{
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+a:hover{
+   color:  #fb5ce3;
+}

@@ -46,6 +46,11 @@ selectProduct(product: Product): void {
 
 addtocart(): void {
   if (this.selectedProduct) {
+    const userid = localStorage.getItem('userId'); 
+    if (!userid) {
+      console.error("User ID not found in localStorage");
+      return;
+    }
     const orprice=this.selectedProduct.price*this.quantity;
 
     const orderdetails:OrderDetails={
@@ -57,7 +62,7 @@ addtocart(): void {
     }
     const neworder :AddOrder ={
       totalamount:orprice,
-      userId:3,
+      userId:parseInt(userid),
       order_date:new Date(),
      orderDetails:[orderdetails]
     };

@@ -7,21 +7,33 @@ import { error } from 'console';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink,CommonModule,FormsModule],
+  imports: [RouterLink,CommonModule,FormsModule,LogoutComponent],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit  {
    order:Order[]=[];
-   userid: number = 3;
+   userid: number = 0;
    orderCount: number = 0;
 
   constructor(private orderservices:AddOrderService, public authService: AuthService){}
   ngOnInit(): void {
+    const storedUserId = localStorage.getItem('userId'); 
+    if (storedUserId) {
+      this.userid = parseInt(storedUserId, 10); 
+      this.getall();
+      
+    } else {
+      console.error("User ID not found in localStorage");
+    }
+  
+  }
+  getall(){
     this.orderservices.getAll(this.userid).subscribe((data: Order[]) => {
       this.order = data.map(order => ({
         ...order,
@@ -32,7 +44,6 @@ export class NavComponent implements OnInit  {
       }));
     });
    this.getcount();
-  
   }
 
   convertImage(base64Image: string): string {

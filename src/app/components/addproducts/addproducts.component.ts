@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CreateProduct } from '../../models/create-product';
 import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-addproducts',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,NavComponent],
   templateUrl: './addproducts.component.html',
   styleUrls: ['./addproducts.component.css'] 
 })
-export class AddproductsComponent {
+export class AddproductsComponent implements OnInit {
   product: CreateProduct = new CreateProduct();
   newSize: string = "";
 
   constructor(private productservices: ProductService) {}
 
+  ngOnInit(): void {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.product.UserId = parseInt(userId, 10);  // Assign to the product.UserId if available
+    } else {
+      console.error('User ID not found in local storage');
+    }
+  }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {

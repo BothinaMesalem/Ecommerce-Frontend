@@ -7,11 +7,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { FproductComponent } from "../fproduct/fproduct.component";
 import { Order } from '../../models/order';
 import { AddOrderService } from '../../services/add-order.service';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent],
+  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent,NavComponent],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
@@ -19,10 +20,21 @@ export class CheckoutComponent implements OnInit {
   checkout: Checkout = new Checkout();
   Countries = Countries; 
   orders: Order[] = [];
-  userid: number = 3;
+  userid: number =0;
 
   constructor(private checkoutService: CheckoutService,private orderServices: AddOrderService) {}
   ngOnInit(): void {
+    const storedUserId = localStorage.getItem('userId'); 
+    if (storedUserId) {
+      this.userid = parseInt(storedUserId, 10);
+      this.getall();
+      
+    } else {
+      console.error("Seller ID not found in localStorage");
+    }
+   
+  }
+  getall(){
     this.orderServices.getAll(this.userid).subscribe((data: Order[]) => {
       this.orders = data.map(order => ({
         ...order,

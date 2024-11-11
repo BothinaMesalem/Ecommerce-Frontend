@@ -5,11 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { response } from 'express';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-edit-cprofile',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NavComponent],
   templateUrl: './edit-cprofile.component.html',
   styleUrl: './edit-cprofile.component.css'
 })
@@ -19,7 +20,13 @@ export class EditCprofileComponent implements OnInit {
   constructor(private customerServices:CustomerService,private route:ActivatedRoute){}
  
   ngOnInit(): void {
-    this.CustomerId=Number(this.route.snapshot.paramMap.get('id'));
+    const storedCustomerId = localStorage.getItem('userId'); 
+    if (storedCustomerId) {
+      this.CustomerId = parseInt(storedCustomerId, 10); 
+      
+    } else {
+      console.error("Seller ID not found in localStorage");
+    }
     this.LoadCustomerData(this.CustomerId);
 
   }

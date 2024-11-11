@@ -6,11 +6,12 @@ import { response } from 'express';
 import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-edit-sprofile',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NavComponent],
   templateUrl: './edit-sprofile.component.html',
   styleUrl: './edit-sprofile.component.css'
 })
@@ -19,7 +20,13 @@ export class EditSprofileComponent implements OnInit {
   SellerId:number=0;
   constructor(private sellerServices:SellerService,private route:ActivatedRoute){}
     ngOnInit(): void {
-      this.SellerId=Number(this.route.snapshot.paramMap.get('id'));
+      const storedSellerId = localStorage.getItem('userId'); 
+      if (storedSellerId) {
+        this.SellerId = parseInt(storedSellerId, 10); // Convert sellerId to a number
+        
+      } else {
+        console.error("Seller ID not found in localStorage");
+      }
       this.loadSellerData(this.SellerId)
     }
 

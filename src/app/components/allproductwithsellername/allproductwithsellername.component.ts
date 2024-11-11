@@ -3,11 +3,12 @@ import { AllProductWithSeller } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-allproductwithsellername',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,NavComponent],
   templateUrl: './allproductwithsellername.component.html',
   styleUrl: './allproductwithsellername.component.css'
 })
