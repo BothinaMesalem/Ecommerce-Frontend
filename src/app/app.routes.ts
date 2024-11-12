@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AllcutomersComponent } from './components/allcutomers/allcutomers.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +45,7 @@ export const routes: Routes = [
   // For Admin
   { path: 'allseller', component: AllsellerComponent, canActivate: [authGuard], data: { role: 'Admin' }},
   { path: 'allproductwithsellername', component: AllproductwithsellernameComponent, canActivate: [authGuard], data: { role: 'Admin' }},
+  { path:"allcustomer",component:AllcutomersComponent,canActivate:[authGuard],data: { role: 'Admin' }},
   
   // General
   { path: 'login', component: LoginComponent },

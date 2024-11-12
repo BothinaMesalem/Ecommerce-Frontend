@@ -8,6 +8,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { RouterLink } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-allseller',
@@ -34,9 +35,21 @@ export class AllsellerComponent implements OnInit {
     this.sellerServices.Delete(id).subscribe(response=>{
       console.log("Deleted Successfully",response);
       this.allseller=this.allseller.filter(s=>s.userId !=id);
-    },error=>{
-      console.log("Can't Deleted",error);
-    })
+      Swal.fire(
+        'Deleted!',
+        'The Seller  has been deleted.',
+        'success'
+      );
+    },
+    error => {
+      console.log("Can't delete", error);
+      Swal.fire(
+        'Error!',
+        'Can t delete this Seller because has Products',
+        'error'
+      );
+    }
+  );
   }
 
 
