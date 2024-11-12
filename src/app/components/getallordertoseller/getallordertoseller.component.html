@@ -1,25 +1,35 @@
 <app-nav></app-nav>
 <div class="cart-container">
-    <h2>All Orders</h2>
-    <div class="cart-content">
-      <ng-container *ngFor="let order of orders">
-        <div class="order-card">
-          <p class="order-date">{{ order.order_date | date: 'MMMM d, y' }}</p>
-          <ng-container *ngFor="let od of order.orderDetails">
-            <div class="cart-item">
-              <div class="product-info">
-                <p class="product-name">Product ID: {{ od.productId }}</p>
-                <p class="product-size">Size: {{ od.size }}</p>
-                <p class="product-quantity">Quantity: {{ od.quantity }}</p>
-              </div>
-              <div class="price-info">
-                <p class="product-price">Price: ${{ od.orderPrice }}</p>
-                <p class="product-subtotal">Subtotal: ${{ od.orderPrice * od.quantity }}</p>
-              </div>
-            </div>
+  <h2>All Orders</h2>
+  <div class="cart-content">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Product ID</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let order of orders">
+          <ng-container *ngFor="let od of order.orderDetails; let i = index">
+            <tr>
+             
+              <td *ngIf="i === 0" >{{ order.order_date | date: 'MMMM d, y' }}</td>
+              <td>{{order.status | orderStatus }}</td>
+              <td>{{ od.productId }}</td>
+              <td>{{ od.size }}</td>
+              <td>{{ od.quantity }}</td>
+              <td>${{ od.orderPrice }}</td>
+              <td>${{ od.orderPrice * od.quantity }}</td>
+            </tr>
           </ng-container>
-        </div>
-      </ng-container>
-    </div>
+        </ng-container>
+      </tbody>
+    </table>
   </div>
-  
+</div>

@@ -60,6 +60,10 @@
   font-size: 18px;
   color: black;
 }
+.user-icon1 {
+  font-size: 15px;
+  color: black;
+}
 
 .user-menu .dropdown {
   display: none;

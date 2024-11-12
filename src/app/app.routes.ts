@@ -18,6 +18,7 @@ import { authGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,4 +47,5 @@ export const routes: Routes = [
   
   // General
   { path: 'login', component: LoginComponent },
+  { path:'signup',component:SignupComponent}
 ];

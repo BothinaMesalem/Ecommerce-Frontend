@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="form-container">
+        <h2>Welcome!</h2>
+        <p>Please enter your details</p>
+        <form (ngSubmit)="Add()" #signupForm="ngForm">
+            <div class="form-group">
+                <label for="userName">Name</label>
+                <input [(ngModel)]="signup.userName" id="userName" name="userName" placeholder="Enter name" class="form-control" required>
+                <div *ngIf="signupForm.submitted && !signup.userName" class="error">
+                    Name is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="signup.email" id="email" name="email" placeholder="Enter email" class="form-control" required email>
+                <div *ngIf="signupForm.submitted && !signup.email" class="error">
+                    Email is required.
+                </div>
+                <div *ngIf="signupForm.submitted && signup.email && signupForm.controls['email']?.errors?.['email']" class="error">
+                    Enter a valid email.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [(ngModel)]="signup.password" id="password" name="password" type="password" placeholder="Enter password" class="form-control" required minlength="6">
+                <div *ngIf="signupForm.submitted && !signup.password" class="error">
+                    Password is required.
+                </div>
+                <div *ngIf="signupForm.submitted && signup.password && signupForm.controls['password']?.errors?.['minlength']" class="error">
+                    Password must be at least 6 characters.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input  id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm password" class="form-control" required>
+                <!-- <div *ngIf="signupForm.submitted && !signup.confirmPassword" class="error">
+                    Confirm password is required.
+                </div> -->
+                <!-- <div *ngIf="signupForm.submitted && signup.password !== signup.confirmPassword" class="error">
+                    Passwords do not match.
+                </div> -->
+            </div>
+
+            <button type="submit" class="btn-submit">Sign Up</button>
+        </form>
+        <p class="signup-prompt">
+            Already have account? <a routerLink="/login">Login</a>
+          </p>
+    </div>
+    <div class="image-container">
+        <img src="../../../assets/Image/Sign up.gif" alt="Sign up illustration">
+    </div>
+  
+</div>

@@ -51,4 +51,8 @@
       </div>
     </div>
   </li>
+  <li *ngIf="!authService.isLoggedIn()" class="user-menu">
+    <span class="user-icon1" routerLink="/login">LOGIN</span>
+  </li>
+  
 </ul>
