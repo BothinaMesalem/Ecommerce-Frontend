@@ -21,7 +21,7 @@ export class AddproductsComponent implements OnInit {
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      this.product.UserId = parseInt(userId, 10);  // Assign to the product.UserId if available
+      this.product.UserId = parseInt(userId, 10);  
     } else {
       console.error('User ID not found in local storage');
     }

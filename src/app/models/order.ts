@@ -15,11 +15,19 @@ export class OrderDetail{
     image:string="";
 
 }
+export enum OrderStatus
+{
+    Pending,
+    Delivered,
+    Shipped,
+}
+
 export class OrderSeller{
     orderId:number=0;
     totalamount:number=0;
     userId:number=0;
     order_date:Date=new Date;
+    status:OrderStatus=OrderStatus.Shipped;
     orderDetails:OrderDetail[]=[];
 }
 export class OrderQuantityDto {

@@ -6,11 +6,12 @@ import { error } from 'console';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
+import { OrderStatusPipe } from '../../pipes/order-status.pipe';
 
 @Component({
   selector: 'app-getallordertoseller',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavComponent],
+  imports: [FormsModule,CommonModule,NavComponent,OrderStatusPipe],
   templateUrl: './getallordertoseller.component.html',
   styleUrl: './getallordertoseller.component.css'
 })
@@ -21,7 +22,7 @@ export class GetallordertosellerComponent implements OnInit {
   ngOnInit(): void {
     const storedSellerId = localStorage.getItem('userId'); 
     if (storedSellerId) {
-      this.sellerId = parseInt(storedSellerId, 10); // Convert sellerId to a number
+      this.sellerId = parseInt(storedSellerId, 10); 
       this.fetchOrders();
     } else {
       console.error("Seller ID not found in localStorage");
