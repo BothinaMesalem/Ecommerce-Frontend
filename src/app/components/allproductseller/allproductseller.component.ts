@@ -7,6 +7,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { RouterLink } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-allproductseller',
@@ -59,9 +60,19 @@ export class AllproductsellerComponent implements OnInit {
       response => {
         console.log("Deleted successfully", response);
         this.products = this.products.filter(product => product.productId !== id);
+        Swal.fire(
+          'Deleted!',
+          'The Product has been deleted.',
+          'success'
+        );
       },
       error => {
-        console.error("Can't delete", error);
+        console.log("Can't delete", error);
+        Swal.fire(
+          'Error!',
+          'There was an issue deleting the product.',
+          'error'
+        );
       }
     );
   }

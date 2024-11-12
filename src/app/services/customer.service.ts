@@ -9,7 +9,9 @@ import { Signup } from '../models/signup';
 export class CustomerService {
    private getcustomer="https://localhost:7100/api/Customer/GetCustomerdatabyId";
    private upcustomer="https://localhost:7100/api/Customer/EditCustomerProfile";
+   private AllCustomer="https://localhost:7100/api/Customer/GetAllCustomer";
    private sign="https://localhost:7100/api/Customer/UserSignUP";
+   private deletecustomer="https://localhost:7100/api/Customer/DeleteUser"
   constructor(private httpclient:HttpClient) { }
 
   getbyId(id:number){
@@ -21,5 +23,11 @@ export class CustomerService {
   Createuser(signup:Signup){
     return this.httpclient.post(this.sign,signup);
 
+  }
+  getall(){
+    return this.httpclient.get<Customer[]>(this.AllCustomer);
+  }
+  Delete(id:number){
+    return this.httpclient.delete(`${this.deletecustomer}/${id}`)
   }
 }

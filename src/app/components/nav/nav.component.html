@@ -15,8 +15,9 @@
 
   <!-- Display Admin Links if logged in as Admin -->
   <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Admin'">
-    <a routerLink="/allseller">All Sellers</a>
-    <a routerLink="/allproductwithsellername">All Products with Seller Names</a>
+    <a routerLink="/allseller"> Sellers</a>
+    <a routerLink="/allproductwithsellername"> Products & Seller Names</a>
+    <a routerLink="/allcustomer">Customers</a>
   </li>
 
   <!-- Logo -->
