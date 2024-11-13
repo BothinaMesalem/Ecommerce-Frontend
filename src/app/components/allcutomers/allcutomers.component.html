@@ -1,4 +1,17 @@
 <app-nav></app-nav>
+<div class="header-row">
+    <h4>All Customers on this Website</h4>
+    <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search by Name" 
+          [(ngModel)]="searchQuery" 
+          (ngModelChange)="onSearchChange()" 
+          class="search-input" 
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+</div>
 <div class="container mt-4">
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -9,7 +22,7 @@
             </tr>
         </thead>
        
-            <tr *ngFor="let customer of customers">
+            <tr *ngFor="let customer of filteredCustomers">
                 <td>{{customer.userName}}</td>
                 <td>{{customer.email}}</td>
                 <td>

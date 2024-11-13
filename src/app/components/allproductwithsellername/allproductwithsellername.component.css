@@ -1,3 +1,11 @@
+/* Use Flexbox for the header row */
+.header-row {
+    display: flex;
+    justify-content: space-between; /* Spread the content to left and right */
+    align-items: center; /* Align vertically in the center */
+}
+
+/* Custom table styles */
 .custom-table {
     margin-top: 20px;
     border-collapse: collapse;
@@ -31,6 +39,47 @@
 }
 
 .btn-danger {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     border: none;
+}
+
+
+.search-container {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 400px !important;
+  }
+  
+  .stock-filter {
+    margin-left: 20px;
+    display: inline-block;
+    max-width: 200px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    font-size: 16px;
+   border: none;
+    outline: none;
+   
+  }
+  
+  .search-container i {
+    margin-left: -5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+h4{
+    margin-top: 50px;
+    color: rgb(52, 52, 52);
 }

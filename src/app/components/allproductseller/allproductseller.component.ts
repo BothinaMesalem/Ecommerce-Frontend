@@ -19,6 +19,9 @@ import Swal from 'sweetalert2';
 export class AllproductsellerComponent implements OnInit {
   products:Product[]=[];
   SellerId:number=0;
+  filteredProducts:Product[]=[];
+  searchQuery:string="";
+  stockFilter:string="";
   constructor(private productservice:ProductService){}
   
   ngOnInit(): void {
@@ -43,7 +46,8 @@ export class AllproductsellerComponent implements OnInit {
         }));
         
         // Log the products array to the console
-        console.log("Products:", this.products);
+       
+        this.filteredProducts=this.products;
       },
       error => {
         console.error("Error fetching products", error);
@@ -76,6 +80,24 @@ export class AllproductsellerComponent implements OnInit {
       }
     );
   }
+  onSearchChange(): void {
+   
+    this.filteredProducts = this.products.filter((product) => {
+        
+        const matchesProductName = product.productName.toLowerCase().includes(this.searchQuery.toLowerCase());
+  
+      
+        let matchesStockStatus = true;
+        if (this.stockFilter === 'in-stock') {
+          matchesStockStatus = product.stack_qty > 0;
+        } else if (this.stockFilter === 'out-of-stock') {
+          matchesStockStatus = product.stack_qty <= 0;  
+        }
+  
+        return matchesProductName && matchesStockStatus;
+      });
+    
+    }
   
 
 }

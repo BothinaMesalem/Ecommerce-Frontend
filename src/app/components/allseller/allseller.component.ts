@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 })
 export class AllsellerComponent implements OnInit {
   allseller:Seller[]=[];
+  filteredSellers:Seller[]=[];
+  searchQuery:string="";
   constructor(private sellerServices:SellerService){}
 
   ngOnInit(): void {
@@ -27,7 +29,8 @@ export class AllsellerComponent implements OnInit {
        ({
         ...seller
        })
-      )
+      );
+      this.filteredSellers=this.allseller;
     })
   }
 
@@ -50,6 +53,13 @@ export class AllsellerComponent implements OnInit {
       );
     }
   );
+  }
+
+  onSearchChange(): void {
+   
+    this.filteredSellers= this.allseller.filter((seller) =>
+      seller.userName.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
   }
 
 

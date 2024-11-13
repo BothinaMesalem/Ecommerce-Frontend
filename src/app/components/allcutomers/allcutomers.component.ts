@@ -17,16 +17,21 @@ import { NavComponent } from '../nav/nav.component';
 })
 export class AllcutomersComponent implements OnInit { 
   customers:Customer[]=[];
+  filteredCustomers:Customer[]=[];
+  searchQuery:string="";
   constructor(private cutomerservices:CustomerService){}
  ngOnInit(): void {
    this.cutomerservices.getall().subscribe(response=>{
     this.customers=response;
     console.log("All Customer",response);
+    this.filteredCustomers=this.customers;
+  
    },
    error=>{
     console.log("Can't load Data ")
    }
   )
+
  }
 
  Delete(id:number){
@@ -49,4 +54,11 @@ export class AllcutomersComponent implements OnInit {
   }
 );
  }
+ onSearchChange(): void {
+   
+  this.filteredCustomers= this.customers.filter((seller) =>
+    seller.userName.toLowerCase().includes(this.searchQuery.toLowerCase())
+  );
+}
+
 }

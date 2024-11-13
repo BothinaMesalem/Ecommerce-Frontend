@@ -1,7 +1,17 @@
 <app-nav></app-nav>
 <div class="header-row">
-    <h2>All Sellers on this Website</h2>
-    <button class="add-seller-button" [routerLink]="['addseller']">Add Seller</button>
+    <h4>All Sellers on this Website</h4>
+    <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search by Name" 
+          [(ngModel)]="searchQuery" 
+          (ngModelChange)="onSearchChange()" 
+          class="search-input" 
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    <button class="add-seller-button" [routerLink]="['addseller']">+</button>
 </div>
 <table class="table table-bordered table-striped custom-table">
     <thead>
@@ -12,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let seller of allseller">
+        <tr *ngFor="let seller of filteredSellers">
             <td data-label="Username">{{ seller.userName }}</td>
             <td data-label="Email">{{ seller.email }}</td>
             <td>

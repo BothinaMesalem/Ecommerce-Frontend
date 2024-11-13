@@ -14,6 +14,10 @@ import { NavComponent } from '../nav/nav.component';
 })
 export class AllproductwithsellernameComponent implements OnInit {
    allproducts:AllProductWithSeller[]=[];
+   filteredProducts:AllProductWithSeller[]=[];
+   searchQuery:string="";
+   stockFilter: string = "";
+
    constructor(private productServices:ProductService){}
 
    ngOnInit(): void {
@@ -21,11 +25,29 @@ export class AllproductwithsellernameComponent implements OnInit {
       this.allproducts=data.map(product=>({
         ...product,
         image:this.convertImage(product.image)
-      }))
+      }));
+      this.filteredProducts=this.allproducts;
      })
    }
    convertImage(base64Image: string): string {
     return `data:image/png;base64,${base64Image}`;
   }
+  onSearchChange(): void {
+   
+  this.filteredProducts = this.allproducts.filter((product) => {
+      
+      const matchesProductName = product.userName.toLowerCase().includes(this.searchQuery.toLowerCase());
 
+    
+      let matchesStockStatus = true;
+      if (this.stockFilter === 'in-stock') {
+        matchesStockStatus = product.stack_qty > 0;
+      } else if (this.stockFilter === 'out-of-stock') {
+        matchesStockStatus = product.stack_qty <= 0;  
+      }
+
+      return matchesProductName && matchesStockStatus;
+    });
+  
+  }
 }
