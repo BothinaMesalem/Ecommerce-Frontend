@@ -1,7 +1,33 @@
 <app-nav></app-nav>
 <div class="button-container">
-  <button class="add-product-button" [routerLink]="['addproduct']">Add Product</button>
-</div>
+    <h4>All Products</h4>
+    
+    <div class="search-filter-container">
+      <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search by Seller Name" 
+          [(ngModel)]="searchQuery" 
+          (ngModelChange)="onSearchChange()" 
+          class="search-input" 
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+  
+      <!-- Stock Status Filter -->
+      <div class="stock-filter">
+        <select [(ngModel)]="stockFilter" (change)="onSearchChange()" name="stockFilter" title="stockFilter">
+          <option value="">All Stock Status</option>
+          <option value="in-stock">In Stock</option>
+          <option value="out-of-stock">Out of Stock</option>
+        </select>
+      </div>
+    </div>
+  
+    <button class="add-product-button" [routerLink]="['addproduct']">Add Product</button>
+  </div>
+  
+
 <table class="product-table">
     <thead>
         <tr>
@@ -14,7 +40,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of filteredProducts">
             <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
             <td>{{ product.productName }}</td>
             <td *ngIf="product.stack_qty > 0" class="status">In Stock ({{ product.stack_qty }})</td>

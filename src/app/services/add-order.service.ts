@@ -14,6 +14,8 @@ export class AddOrderService {
   private Deleteurl="https://localhost:7100/api/Order/DeleteOrder";
   private ordercount="https://localhost:7100/api/Order/GetCountByUserId";
   private getall="https://localhost:7100/api/Order/getAllOrderToseller"
+  private getorders="https://localhost:7100/api/Order/GeTAllOrder";
+  private AsDelete="https://localhost:7100/api/Order/ASDelete"
   constructor(private httpclient:HttpClient) { }
   addOrder(addorder:AddOrder){
 
@@ -35,7 +37,13 @@ export class AddOrderService {
   GetAllOrder(id:number){
     return this.httpclient.get<OrderSeller[]>(`${this.getall}/${id}`)
   }
-
+  GetOrders(){
+    return this.httpclient.get<OrderSeller[]>(this.getorders);
+  }
+  ASDeleteOrder(id:number){
+    return this.httpclient.delete(`${this.AsDelete}/${id}`)
+  }
+  
 
   
 }

@@ -1,0 +1,66 @@
+.order-table {
+    width: 90%;
+    max-width: 1100px; 
+    margin: 30px auto;
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .order-table thead tr {
+    background-color: #004085; 
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .order-table th, .order-table td {
+    padding: 14px 18px; 
+    border: 1px solid #e0e0e0; 
+  }
+  
+  .order-table th {
+    text-transform: uppercase; 
+    letter-spacing: 0.05em; 
+  }
+  
+  .order-table tbody tr:nth-child(even) {
+    background-color: #f5f8fa;
+  }
+  
+  .order-table tbody tr:nth-child(odd) {
+    background-color: #fbf1f0; 
+  }
+  
+  .order-table tbody tr:hover {
+    background-color: #e8f0fe; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  }
+  .cart-container {
+    padding: 0 20px;
+  }
+  .search-filter {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    gap: 15px; 
+  }
+  
+  .search-filter .form-group {
+    flex: 1;
+  }
+  
+  .search-filter label {
+    margin-right: 5px; 
+  }
+  
+  .search-filter select,
+  .search-filter input {
+    width: 100%; 
+  }
+  
+  

@@ -1,31 +1,53 @@
 <app-nav></app-nav>
 <div class="container">
-    <h2 class="text-center my-4">All Products with Seller Names</h2>
-    <table class="table table-bordered table-striped custom-table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Price</th>
-                <th>Seller Name</th>
-             
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of allproducts">
-                <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
-                <td>{{ product.productName }}</td>
-                <td>{{ product.productDescription }}</td>
-                <td>
-                    <span *ngIf="product.stack_qty > 0" class="status">In Stock ({{ product.stack_qty }})</span>
-                    <span *ngIf="product.stack_qty <= 0" class="status out-of-stock">Out of Stock</span>
-                </td>
-                <td>{{ product.price }}$</td>
-                <td>{{ product.userName }}</td>
-               
-            </tr>
-        </tbody>
-    </table>
+  <div class="header-row">
+    <h4 class="">All Products with Seller Names</h4>
+
+    <!-- Product Name Search -->
+    <div class="search-container">
+      <input 
+        type="text" 
+        placeholder="Search by Seller Name" 
+        [(ngModel)]="searchQuery" 
+        (ngModelChange)="onSearchChange()" 
+        class="search-input" 
+      />
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+
+    <!-- Stock Status Filter -->
+    <div class="stock-filter">
+      <select [(ngModel)]="stockFilter" (change)="onSearchChange()" name="stockFilter" title="stockFilter">
+        <option value="">All Stock Status</option>
+        <option value="in-stock">In Stock</option>
+        <option value="out-of-stock">Out of Stock</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped custom-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Seller Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td><img [src]="product.image" alt="Product Image" width="60" height="60"></td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productDescription }}</td>
+        <td>
+          <span *ngIf="product.stack_qty > 0" class="status">In Stock ({{ product.stack_qty }})</span>
+          <span *ngIf="product.stack_qty <= 0" class="status out-of-stock">Out of Stock</span>
+        </td>
+        <td>{{ product.price }}$</td>
+        <td>{{ product.userName }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

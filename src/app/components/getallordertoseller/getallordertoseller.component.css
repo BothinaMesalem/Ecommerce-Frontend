@@ -43,3 +43,23 @@
 .cart-container {
   padding: 0 20px;
 }
+.search-filter {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  gap: 15px; 
+}
+
+.search-filter .form-group {
+  flex: 1;
+}
+
+.search-filter label {
+  margin-right: 5px; 
+}
+
+.search-filter select,
+.search-filter input {
+  width: 100%; 
+}
+

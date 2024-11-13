@@ -1,6 +1,21 @@
 <app-nav></app-nav>
+<div class="productletter"> 
+  <h4>HOME/BUY-T-SHIRTS</h4>
+</div>
+<div class="search-container">
+  <input 
+    type="text" 
+    placeholder="Search by productName" 
+    [(ngModel)]="searchQuery" 
+    (ngModelChange)="onSearchChange()" 
+    class="search-input" 
+  />
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+
 <div class="products">
-  <div *ngFor="let product of products" class="product">
+  <div *ngFor="let product of filteredProducts" class="product">
     <div class="image-container">
       <img 
         [routerLink]="['productdetails', product.productId]" 
@@ -31,6 +46,7 @@
         </button>
       </div>
     </div>
+    
     <!-- <button (click)="selectandadd(product)">Add To Cart</button> -->
 
   </div>

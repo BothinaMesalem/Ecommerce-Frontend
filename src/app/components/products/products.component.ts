@@ -19,24 +19,23 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class ProductsComponent implements OnInit {
   products:Product[]=[];
+  filteredProducts: Product[] = [];
   selectedProduct ?:Product;
   orderPrice: number = 0;
   quantity: number = 1;
   selectedSize: string = "";
+  searchQuery:string="";
 
   constructor(private productservice:ProductService,private addorderservices:AddOrderService){}
 
   ngOnInit(): void {
-    this.productservice.getAll().subscribe((data:Product [])=>
-      this.products = data.map(product => ({
+    this.productservice.getAll().subscribe((data: Product[]) => {
+      this.products = data.map((product) => ({
         ...product,
-        image: this.convertImage(product.image)
-      
-        
-      }))
-     
-    )
-   
+        image: this.convertImage(product.image),
+      }));
+      this.filteredProducts = this.products;
+    });
   }
   convertImage(base64Image: string): string {
     return `data:image/png;base64,${base64Image}`;
@@ -101,6 +100,12 @@ export class ProductsComponent implements OnInit {
     }) 
   }
 
+  }
+  onSearchChange(): void {
+   
+    this.filteredProducts = this.products.filter((product) =>
+      product.productName.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
   }
 
 
