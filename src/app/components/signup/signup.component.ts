@@ -5,7 +5,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
 export class SignupComponent {
 signup:Signup=new Signup();
 signupForm: FormGroup;
-constructor(private customerservices:CustomerService,private fb: FormBuilder)
+constructor(private customerservices:CustomerService,private fb: FormBuilder,private router:Router)
 {
   this.signupForm = this.fb.group({
     userName: ['', Validators.required],
@@ -34,7 +34,7 @@ get passwordMatchError() {
 
 Add(){
   this.customerservices.Createuser(this.signup).subscribe(response=>{
-    console.log("signup successfully");
+    this.router.navigate(['/login']);
   },error=>{
     console.log("Error when Signup",error)
   })
