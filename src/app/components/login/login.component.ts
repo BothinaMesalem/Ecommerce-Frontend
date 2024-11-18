@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  accountDto: Account = { userName: '', password: '' };
+  accountDto: Account = { email: '', password: '' };
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
