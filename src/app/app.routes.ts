@@ -21,6 +21,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AllcutomersComponent } from './components/allcutomers/allcutomers.component';
 import { OrdersAdminComponent } from './components/orders-admin/orders-admin.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'shoppingcart', component: CartComponent, canActivate: [authGuard], data: { role: 'Customer' }},
   { path: 'shoppingcart/checkout', component: CheckoutComponent, canActivate: [authGuard], data: { role: 'Customer' }},
   { path: 'editcprofile/:id', component: EditCprofileComponent, canActivate: [authGuard], data: { role: 'Customer' }},
+  { path: 'payment',component:PaymentComponent,canActivate: [authGuard], data: { role: 'Customer' }},
   
   // For Seller
   { path: 'products', component: ProductsComponent, canActivate: [authGuard], data: { role: 'Seller' }},

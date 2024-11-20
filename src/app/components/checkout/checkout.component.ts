@@ -8,33 +8,45 @@ import { FproductComponent } from "../fproduct/fproduct.component";
 import { Order } from '../../models/order';
 import { AddOrderService } from '../../services/add-order.service';
 import { NavComponent } from '../nav/nav.component';
+import { PaymentComponent } from '../payment/payment.component';
+import { PaymentService } from '../../services/payment.service'; // import PaymentService
+import { loadStripe, Stripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent,NavComponent],
+  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent, NavComponent, PaymentComponent],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
   checkout: Checkout = new Checkout();
-  Countries = Countries; 
+  Countries = Countries;
   orders: Order[] = [];
-  userid: number =0;
+  userid: number = 0;
+  stripe: Stripe | null = null;
 
-  constructor(private checkoutService: CheckoutService,private orderServices: AddOrderService) {}
-  ngOnInit(): void {
-    const storedUserId = localStorage.getItem('userId'); 
+  constructor(
+    private checkoutService: CheckoutService,
+    private orderServices: AddOrderService,
+    private paymentService: PaymentService 
+  ) {}
+
+  async ngOnInit():  Promise<void> {
+    const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
       this.userid = parseInt(storedUserId, 10);
       this.getall();
-      
     } else {
       console.error("Seller ID not found in localStorage");
     }
-   
+    this.stripe = await loadStripe('pk_test_51PbmIRG7HzCkDzBkCN3clnAqNFVQ9vXGQm1BssWXqaFeNDVRuptL9RcLnbUMNkdaTg6d3oyQTB3HuJ4vmbv7Qszk00PIpVLPsC');
+    if (!this.stripe) {
+      console.error('Stripe failed to load');
+    }
   }
-  getall(){
+
+  getall() {
     this.orderServices.getAll(this.userid).subscribe((data: Order[]) => {
       this.orders = data.map(order => ({
         ...order,
@@ -53,10 +65,37 @@ export class CheckoutComponent implements OnInit {
   getAllOrdersTotal(): number {
     return this.orders.reduce((totalSum, order) => {
       const orderTotal = order.orderDetail.reduce((sum, od) => sum + (od.orderPrice * od.quantity), 0);
-      return totalSum + orderTotal; 
+      return totalSum + orderTotal;
     }, 0);
   }
-  
+
+  // Modify the Add() method to handle the payment on order placement
+  handlePayment() {
+    const amount = this.getAllOrdersTotal();
+    const paymentData = {
+      amount: amount * 100, // Multiply by 100 to convert to cents
+      userId: this.userid,
+    };
+
+    
+        this.paymentService.createCheckoutSession(paymentData).subscribe({
+          next: async (response) => {
+            const sessionId = response.sessionId;
+    
+            if (this.stripe) {
+              this.stripe.redirectToCheckout({ sessionId })
+                .then(result => {
+                  if (result.error) {
+                    console.error('Error redirecting to checkout:', result.error.message);
+                  }
+                });
+            }
+          },
+          error: (err) => {
+            console.error('Error creating payment session:', err);
+          },
+        });
+  }
 
   
   Add() {
@@ -74,7 +113,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCountryValue(countryKey: number) {
-    return Countries[countryKey as unknown as keyof typeof Countries]; 
-}
+    return Countries[countryKey as unknown as keyof typeof Countries];
+  }
 
+  AddandPayment(){
+    this.handlePayment();
+    this.Add();
+  }
 }
