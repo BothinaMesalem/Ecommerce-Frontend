@@ -2,3 +2,28 @@
  width:620px;
  padding: 8px 8px;
 }
+.cart-totals {
+    width: 380px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #f5c6c6;
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+}
+
+.cart-totals h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #fceaea;
+    padding: 10px;
+    text-align: center;
+}
+
+.cart-totals .subtotal,
+.cart-totals .total {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}

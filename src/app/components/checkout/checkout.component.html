@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <div class="row">
         <!-- Checkout Section - Left Side -->
-        <div class="col-md-6">
+        <div class="col-md-8">
             <form (ngSubmit)="AddandPayment()"> 
                 <h3 class="my-4">Customer Information</h3>
                 <div class="form-group mb-4">
@@ -61,8 +61,18 @@
         </div>
 
         <!-- Payment Section - Right Side -->
-        <div class="col-md-6 mt-5">
-            <img src="../../../assets/Image/Mobile payments.gif" alt="Payment">
+        <div class="col-md-4 mt-5">
+            <div class="cart-totals">
+                <div class="cartName">
+                    <h3>You Order </h3>
+                </div>
+              
+                <p class="subtotal">Subtotal: ${{ getAllOrdersTotal() }}</p>
+                <hr>
+                <p class="total">Total: ${{ getAllOrdersTotal() }}</p>
+                <hr>
+                
+              </div>   
         </div>
     </div>
 </div>
