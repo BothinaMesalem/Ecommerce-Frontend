@@ -1,8 +1,10 @@
 <app-nav></app-nav>
+
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6"> <!-- Adjust width by changing col-md-6 to any desired width -->
-            <form (ngSubmit)="Add()">
+        <!-- Checkout Section - Left Side -->
+        <div class="col-md-8">
+            <form (ngSubmit)="AddandPayment()"> 
                 <h3 class="my-4">Customer Information</h3>
                 <div class="form-group mb-4">
                     <input [(ngModel)]="checkout.email" id="email" name="email" placeholder="Username or Email Address *" class="form-control" required>
@@ -45,7 +47,7 @@
                         <input [(ngModel)]="checkout.zipCode" id="zipCode" name="zipCode" placeholder="ZIP Code *" class="form-control" required>
                     </div>
                     <div class="col-md-6 form-group mb-4">
-                        <input [(ngModel)]="checkout.phone" id="phone" name="phone" placeholder="Phone *" class="form-control" required>
+                        <input [(ngModel)]="checkout.phone" id="phone" name="phone" placeholder="Phone *" class="form-control"   required>
                     </div>
                 </div>
 
@@ -54,9 +56,25 @@
                     <textarea [(ngModel)]="checkout.info" id="info" name="info" placeholder="Notes about your order, e.g., special notes for delivery." class="form-control"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-dark  mt-4">Place Order ${{ getAllOrdersTotal() }}</button>
+                <button type="submit" class="btn btn-dark mt-4">Pay Now  ${{ getAllOrdersTotal() }}</button> 
             </form>
+        </div>
+
+        <!-- Payment Section - Right Side -->
+        <div class="col-md-4 mt-5">
+            <div class="cart-totals">
+                <div class="cartName">
+                    <h3>You Order </h3>
+                </div>
+              
+                <p class="subtotal">Subtotal: ${{ getAllOrdersTotal() }}</p>
+                <hr>
+                <p class="total">Total: ${{ getAllOrdersTotal() }}</p>
+                <hr>
+                
+              </div>   
         </div>
     </div>
 </div>
+
 <app-footer></app-footer>
