@@ -22,6 +22,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AllcutomersComponent } from './components/allcutomers/allcutomers.component';
 import { OrdersAdminComponent } from './components/orders-admin/orders-admin.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { SellerDashboardComponent } from './components/seller-dashboard/seller-dashboard.component';
+import { EditAprofileComponent } from './components/edit-aprofile/edit-aprofile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,13 +47,15 @@ export const routes: Routes = [
   { path: 'allproductseller/editproduct/:id', component: EditproductComponent, canActivate: [authGuard], data: { role: 'Seller' }},
   { path: 'allordertoseller/:id', component: GetallordertosellerComponent, canActivate: [authGuard], data: { role: 'Seller' }},
   { path: 'editsprofile/:id', component: EditSprofileComponent, canActivate: [authGuard], data: { role: 'Seller' }},
+  { path: 'sellerDash', component:SellerDashboardComponent, canActivate: [authGuard], data: { role: 'Seller' }},
   
   // For Admin
   { path: 'allseller', component: AllsellerComponent, canActivate: [authGuard], data: { role: 'Admin' }},
   { path: 'allproductwithsellername', component: AllproductwithsellernameComponent, canActivate: [authGuard], data: { role: 'Admin' }},
   { path:"allcustomer",component:AllcutomersComponent,canActivate:[authGuard],data: { role: 'Admin' }},
   { path:"Orders",component:OrdersAdminComponent,canActivate:[authGuard],data:{role:'Admin'}},
-  
+  { path: 'editaprofile/:id', component: EditAprofileComponent, canActivate: [authGuard], data: { role: 'Admin' }},
+  { path:"Dashadmin",component:AdminDashboardComponent,canActivate:[authGuard],data:{role:'Admin'}},
   // General
   { path: 'login', component: LoginComponent },
   { path:'signup',component:SignupComponent}
