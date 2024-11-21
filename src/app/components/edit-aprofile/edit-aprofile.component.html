@@ -1,0 +1,35 @@
+<app-nav></app-nav>
+<div class="container vh-90 mt-5 d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col-lg-4">
+        <h3 class="text-center mb-3">Edit Profile</h3>
+        <form *ngIf="upSeller" (ngSubmit)="EditSeller()" class="border p-4 rounded shadow" #profileForm="ngForm">
+            <div class="mb-3">
+                <label class="form-label">Enter User Name</label>
+                <input 
+                    [(ngModel)]="upSeller.userName" 
+                    name="userName" 
+                    class="form-control" 
+                    placeholder="Enter name" 
+                    required 
+                    #userName="ngModel">
+                <div *ngIf="userName.invalid && userName.touched" class="text-danger">
+                    User Name is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Gmail</label>
+                <input 
+                    [(ngModel)]="upSeller.email" 
+                    name="email" 
+                    class="form-control" 
+                    placeholder="Enter Description" 
+                    required 
+                    #email="ngModel">
+                <div *ngIf="email.invalid && email.touched" class="text-danger">
+                   Gmail is required.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="profileForm.invalid">Edit Profile</button>
+        </form>
+    </div>
+</div>

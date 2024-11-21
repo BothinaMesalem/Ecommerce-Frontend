@@ -2,23 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { EditSeller } from '../../models/seller';
 import { SellerService } from '../../services/seller.service';
 import { ActivatedRoute } from '@angular/router';
-import { response } from 'express';
-import { error } from 'console';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NavComponent } from '../nav/nav.component';
 
 @Component({
-  selector: 'app-edit-sprofile',
+  selector: 'app-edit-aprofile',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavComponent],
-  templateUrl: './edit-sprofile.component.html',
-  styleUrl: './edit-sprofile.component.css'
+  imports: [CommonModule,FormsModule,NavComponent],
+  templateUrl: './edit-aprofile.component.html',
+  styleUrl: './edit-aprofile.component.css'
 })
-export class EditSprofileComponent implements OnInit {
+export class EditAprofileComponent implements OnInit {
   upSeller:EditSeller=new EditSeller();
   SellerId:number=0;
-  constructor(private sellerServices:SellerService,private route:ActivatedRoute){}
+  constructor(private adminservices:SellerService,private route:ActivatedRoute){}
     ngOnInit(): void {
       const storedSellerId = localStorage.getItem('userId'); 
       if (storedSellerId) {
@@ -31,7 +29,7 @@ export class EditSprofileComponent implements OnInit {
     }
 
   loadSellerData(id:number){
-    this.sellerServices.getbyId(id).subscribe(response=>{
+    this.adminservices.getbyadminId(id).subscribe(response=>{
       this.upSeller=response;
       console.log("Get SuccessFully",response);
     },error=>{
@@ -41,7 +39,7 @@ export class EditSprofileComponent implements OnInit {
 
   EditSeller(){
    if(this.upSeller){
-    this.sellerServices.Update(this.upSeller,this.SellerId).subscribe(response=>{
+    this.adminservices.UpdateAdmin(this.upSeller,this.SellerId).subscribe(response=>{
       console.log("Update SuccessFully",response);
      },error=>{
        console.log("error when Edit",error);

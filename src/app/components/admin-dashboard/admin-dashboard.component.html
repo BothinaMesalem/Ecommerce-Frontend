@@ -1,0 +1,36 @@
+<app-nav></app-nav>
+<div class="dashboard">
+    <div class="statistics">
+      <div class="stat-card">Products
+        <br>
+         {{ productsCount }}</div>
+      <div class="stat-card">Users <br>
+         {{ customersCount + sellersCount }}</div>
+
+      <div class="stat-card">Orders 
+        <br> {{ ordersCount }}</div>
+    </div>
+  
+    <div class="charts">
+      <!-- User Distribution Chart -->
+      <div>
+        <h3>User Distribution</h3>
+        <canvas
+          baseChart
+          [data]="userDistributionData"
+          [type]="'doughnut'">
+        </canvas>
+      </div>
+  
+      <!-- Order Status Chart -->
+      <div>
+        <h3>Order Status</h3>
+        <canvas
+          baseChart
+          [data]="orderStatusData"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  

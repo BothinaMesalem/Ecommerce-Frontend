@@ -45,8 +45,13 @@
     <span class="user-icon"><i class="fa-solid fa-user"></i></span>
     <div class="dropdown">
       <div class="profile-link">
-        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'" [routerLink]="['/editcprofile', userid]">Profile</a>
-        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Seller'" [routerLink]="['/editsprofile', userid]">Profile</a>        
+        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'" [routerLink]="['/editcprofile', userid]"> Edit Profile</a>
+        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Seller'" [routerLink]="['/editsprofile', userid]">Edit Profile</a>  
+        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Admin'" [routerLink]="['/editaprofile', userid]">Edit Profile</a>         
+      </div>
+      <div class="Dash-link">
+        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Seller'" [routerLink]="['/sellerDash']">DashBoard</a>  
+        <a *ngIf="authService.isLoggedIn() && authService.getRole() === 'Admin'" [routerLink]="['/Dashadmin']">DashBoard</a>      
       </div>
       <div class="logout-link">
         <app-logout ></app-logout>
