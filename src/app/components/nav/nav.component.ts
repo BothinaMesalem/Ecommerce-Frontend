@@ -20,6 +20,7 @@ export class NavComponent implements OnInit  {
    order:Order[]=[];
    userid: number = 0;
    orderCount: number = 0;
+   username:string="";
 
   constructor(private orderservices:AddOrderService, public authService: AuthService){}
   ngOnInit(): void {
@@ -30,6 +31,14 @@ export class NavComponent implements OnInit  {
       
     } else {
       console.error("User ID not found in localStorage");
+    }
+
+    const storedUserName=localStorage.getItem('name');
+    if(storedUserName){
+      this.username=storedUserName;
+    }
+    else{
+      console.error("User Name not found in localStorage");
     }
   
   }

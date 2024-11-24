@@ -11,11 +11,12 @@ import { NavComponent } from '../nav/nav.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { PaymentService } from '../../services/payment.service'; // import PaymentService
 import { loadStripe, Stripe } from '@stripe/stripe-js';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent, NavComponent, PaymentComponent],
+  imports: [FormsModule, CommonModule, FooterComponent, FproductComponent, NavComponent, PaymentComponent,RouterLink],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   orders: Order[] = [];
   userid: number = 0;
   stripe: Stripe | null = null;
+  paymentMethod: string = '';
 
   constructor(
     private checkoutService: CheckoutService,
@@ -115,9 +117,25 @@ export class CheckoutComponent implements OnInit {
   getCountryValue(countryKey: number) {
     return Countries[countryKey as unknown as keyof typeof Countries];
   }
+  UpdateStatus(){
+    this.orderServices.EditStatus(this.userid).subscribe(response=>{
+      console.log("Succeed",response)
+    },error=>{
+      console.log("ERROR",error)
+    })
+  }
 
   AddandPayment(){
     this.handlePayment();
     this.Add();
+    this.UpdateStatus();
+  }
+
+  onFormSubmit() {
+    if (this.paymentMethod === 'payNow') {
+      this.AddandPayment();
+    } else if (this.paymentMethod === 'onDelivery') {
+      this.Add();
+    }
   }
 }

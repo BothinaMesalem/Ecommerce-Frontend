@@ -4,9 +4,24 @@
     <div class="row">
         <!-- Checkout Section - Left Side -->
         <div class="col-md-8">
-            <form (ngSubmit)="AddandPayment()" #checkoutForm="ngForm">
-                <h3 class="my-4">Customer Information</h3>
-                <div class="form-group mb-4">
+            <form #checkoutForm="ngForm" (ngSubmit)="onFormSubmit()">
+                <h3 class="my-4">CheckOut</h3>
+                <div class="stepper">
+                    <div class="step ">
+                        <span class="circle">1</span>
+                        <span class="label">SHOPPING CART</span>
+                    </div>
+                    <div class="step active">
+                        <span class="circle">2</span>
+                        <span class="label" routerLink="/shoppingcart/checkout" >CHECKOUT DETAILS</span>
+                    </div>
+                    <div class="step">
+                        <span class="circle">3</span>
+                        <span class="label">ORDER COMPLETE</span>
+                    </div>
+                </div>
+                <h5>Customer Information</h5>
+                <div class="form-group mb-4 mt-5">
                     <input [(ngModel)]="checkout.email" id="email" name="email" placeholder="Username or Email Address *" class="form-control" required email #email="ngModel">
                     <div *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid email address.</div>
                 </div>
@@ -64,23 +79,94 @@
                 <div class="form-group mb-4">
                     <textarea [(ngModel)]="checkout.info" id="info" name="info" placeholder="Notes about your order, e.g., special notes for delivery." class="form-control"></textarea>
                 </div>
-
-                <button type="submit" class="btn btn-dark mt-4" [disabled]="checkoutForm.invalid">Pay Now  ${{ getAllOrdersTotal() }}</button> 
+                <h5 class="my-4">Payment Method</h5>
+        <div class="form-group">
+          <div class="form-check">
+            <input
+              type="radio"
+              id="payNow"
+              name="paymentMethod"
+              value="payNow"
+              class="form-check-input"
+              [(ngModel)]="paymentMethod"
+              required
+            />
+            <label for="payNow" class="form-check-label">Pay Now</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              id="onDelivery"
+              name="paymentMethod"
+              value="onDelivery"
+              class="form-check-input"
+              [(ngModel)]="paymentMethod"
+            />
+            <label for="onDelivery" class="form-check-label">On Delivery</label>
+          </div>
+        </div>
+        <div *ngIf="paymentMethod === 'payNow'">
+            <button
+              type="submit"
+              class="btn btn-dark mt-4"
+              [disabled]="checkoutForm.invalid"
+            >
+              Pay Now ${{ getAllOrdersTotal() }}
+            </button>
+          </div>
+          <div *ngIf="paymentMethod === 'onDelivery'">
+            <button
+              type="submit"
+              class="btn btn-dark mt-4"
+              [disabled]="checkoutForm.invalid"
+            >
+              On Delivery ${{ getAllOrdersTotal() }}
+            </button>
+          </div> 
             </form>
         </div>
 
         <!-- Payment Section - Right Side -->
         <div class="col-md-4 mt-5">
-            <div class="cart-totals">
-                <div class="cartName">
-                    <h3>Your Order</h3>
-                </div>
-
-                <p class="subtotal">Subtotal: ${{ getAllOrdersTotal() }}</p>
-                <hr>
-                <p class="total">Total: ${{ getAllOrdersTotal() }}</p>
-                <hr>
-            </div>   
+            <h3 class="order-title">Your order</h3>
+            <div class="order-summary">
+             
+                <table class="order-table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let order of orders">
+                      <tr *ngFor="let od of order.orderDetail">
+                        <td class="product-details">
+                          <div class="product-row">
+                            <img [src]="od.image" alt="Product Image" class="product-image">
+                            <div class="product-info">
+                              <p class="product-name">{{ od.productName }} </p>
+                              <p class="product-size">Size: {{ od.size }}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="product-subtotal">${{ od.orderPrice * od.quantity }}</td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td class="subtotal-label">Subtotal</td>
+                      <td>${{  getAllOrdersTotal()}}</td>
+                    </tr>
+                    <tr>
+                      <td class="total-label"><strong>Total</strong></td>
+                      <td><strong>${{ getAllOrdersTotal() }}</strong></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              
         </div>
     </div>
 </div>

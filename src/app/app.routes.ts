@@ -56,6 +56,7 @@ export const routes: Routes = [
   { path:"Orders",component:OrdersAdminComponent,canActivate:[authGuard],data:{role:'Admin'}},
   { path: 'editaprofile/:id', component: EditAprofileComponent, canActivate: [authGuard], data: { role: 'Admin' }},
   { path:"Dashadmin",component:AdminDashboardComponent,canActivate:[authGuard],data:{role:'Admin'}},
+  {path:"allseller/addseller",component:AddsellerComponent,canActivate:[authGuard],data:{role:'Admin'}},
   // General
   { path: 'login', component: LoginComponent },
   { path:'signup',component:SignupComponent}
