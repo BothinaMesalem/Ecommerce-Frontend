@@ -25,6 +25,7 @@ export class AddproductsComponent implements OnInit {
     } else {
       console.error('User ID not found in local storage');
     }
+    this.product.Size = [];
   }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];

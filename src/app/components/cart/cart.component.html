@@ -1,6 +1,24 @@
 <app-nav></app-nav>
-<div class="cart-container">
+<div class="cart-container" *ngIf="orders.length > 0">
     <h2>Cart</h2>
+    <div class="stepper">
+      <div class="step active">
+          <span class="circle">1</span>
+          <span class="label" routerLink="/shoppingcart">SHOPPING CART</span>
+      </div>
+      <div class="step">
+          <span class="circle">2</span>
+          <span class="label">CHECKOUT DETAILS</span>
+      </div>
+      <div class="step">
+          <span class="circle">3</span>
+          <span class="label">ORDER COMPLETE</span>
+      </div>
+  </div>
+
+  <div>
+
+  </div>
     
     <div class="cart-content">
     
@@ -58,6 +76,9 @@
         <button routerLink="checkout" class="checkout-button">Proceed to checkout</button>
       </div>      
     </div>
+  </div>
+  <div *ngIf="!orders.length" class="notfound">
+    <img src="../../../assets/Image/Shrug (1).gif" alt="not found" >
   </div>
   <app-footer></app-footer>
   

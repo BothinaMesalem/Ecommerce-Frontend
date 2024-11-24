@@ -1,10 +1,12 @@
 a{
     padding: 10px 20px;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 20px;
     color: #333;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    margin-left: -20px;
+    
 }
 a:hover{
    color:  #fb5ce3;

@@ -10,6 +10,7 @@ export class AuthService {
   private Apiurl = "https://localhost:7100/api/Account/Login";
   private tokenKey = 'authToken';
   private UserIdKey = 'userId';
+  private nameKey="name"
 
   constructor(private httpclient: HttpClient) { }
 
@@ -21,6 +22,14 @@ export class AuthService {
           
           const payload = JSON.parse(atob(response.token.split('.')[1]));
           const userId = payload.id || null;  
+
+          const name=payload.name;
+
+          if(name){
+            localStorage.setItem(this.nameKey,name);
+          } else {
+            console.log("Can't get name");
+          }
 
           if (userId) {
             localStorage.setItem(this.UserIdKey, userId);
