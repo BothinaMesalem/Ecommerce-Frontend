@@ -1,5 +1,5 @@
 .product-table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
   margin-top: 20px;
   font-size: 1rem;
@@ -8,6 +8,7 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
+  margin-left: 40px;
 }
 
 .product-table thead tr {
@@ -38,7 +39,9 @@
 }
 
 h4 {
-  margin: 0;
+  margin: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .search-filter-container {
@@ -65,7 +68,7 @@ h4 {
 }
 
 .add-product-button {
-  margin-left: 20px;
+  margin-right: 20px;
   padding: 10px 20px;
   background-color: #17a2b8;
   color: white;

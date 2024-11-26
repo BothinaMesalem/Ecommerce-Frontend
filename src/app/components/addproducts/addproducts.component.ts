@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
+import { clear } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addproducts',
@@ -16,7 +18,7 @@ export class AddproductsComponent implements OnInit {
   product: CreateProduct = new CreateProduct();
   newSize: string = "";
 
-  constructor(private productservices: ProductService) {}
+  constructor(private productservices: ProductService,private router:Router) {}
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
@@ -47,9 +49,20 @@ export class AddproductsComponent implements OnInit {
   addProduct() {
     this.productservices.add(this.product).subscribe(response => {
       console.log('Product added successfully', response);
+     this.clearForm();
+     this.router.navigate(['/allproductseller'])
+
     }, error => {
       console.error('Error adding product', error);
       console.error('Full error response:', JSON.stringify(error, null, 2))
     });
+  }
+  clearForm() {
+   
+    this.product = new CreateProduct();
+    this.newSize = "";
+  
+   
+  
   }
 }
