@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { EditProduct } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavComponent } from '../nav/nav.component';
@@ -21,6 +21,7 @@ export class EditproductComponent {
   constructor(
     private productservices: ProductService,
     private route: ActivatedRoute,
+    private router:Router,
 
   ) {}
 
@@ -68,6 +69,7 @@ export class EditproductComponent {
         this.productservices.Edit(this.upproduct, this.productId).subscribe(
             (response) => {
                 console.log('Product edited successfully', response);
+                this.router.navigate(['/allproductseller'])
             },
             (error) => {
                 console.error('Error editing product', error);

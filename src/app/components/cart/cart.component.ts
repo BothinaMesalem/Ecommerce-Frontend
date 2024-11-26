@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { NavComponent } from '../nav/nav.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,7 @@ export class CartComponent implements OnInit {
   orders: Order[] = [];
   userid: number = 0;
 
-  constructor(private orderServices: AddOrderService) {}
+  constructor(private orderServices: AddOrderService,private snackBar:MatSnackBar) {}
 
   ngOnInit(): void {
     const storedUserId = localStorage.getItem('userId'); 
@@ -87,11 +88,11 @@ export class CartComponent implements OnInit {
     this.orderServices.Delete(id).subscribe(response=>{
       console.log("remove succes",response);
       this.orders=this.orders.filter(od=>od.orderId !==id)
-      Swal.fire(
-        'Deleted!',
-        'The order has been deleted.',
-        'success'
-      );
+      this.snackBar.open('The order has been deleted', 'Close', {
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
     },
     error => {
       console.log("Can't delete", error);
