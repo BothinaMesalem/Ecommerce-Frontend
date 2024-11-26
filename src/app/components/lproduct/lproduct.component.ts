@@ -6,7 +6,8 @@ import { AddOrder, OrderDetails } from '../../models/add-order';
 import { Updateproduct } from '../../models/create-product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lproduct',
@@ -21,10 +22,15 @@ export class LproductComponent implements OnInit {
   orderPrice: number = 0;
   quantity: number = 1;
   selectedSize: string = "";
+  UserId:number|null=null;
   
-  constructor(private productServices:ProductService,private addorderservices:AddOrderService){}
+  constructor(private productServices:ProductService,private addorderservices:AddOrderService,private router:Router,private snackBar: MatSnackBar){}
   
   ngOnInit(): void {
+    const storedUserId=localStorage.getItem("userId");
+    if(storedUserId){
+      this.UserId=parseInt(storedUserId,10);
+    }
     this.productServices.getLastproduct().subscribe((data:Product [])=>
       this.products = data.map(product => ({
         ...product,
@@ -34,6 +40,7 @@ export class LproductComponent implements OnInit {
       }))
      
     )
+  
    
   }
   convertImage(base64Image: string): string {
@@ -43,38 +50,61 @@ export class LproductComponent implements OnInit {
     this.selectedProduct = product;
     console.log("this is selected");
   }
-  
-  addtocart(): void {
-    if (this.selectedProduct) {
-      const orprice=this.selectedProduct.price*this.quantity;
-  
-      const orderdetails:OrderDetails={
-        orderPrice:this.selectedProduct.price,
-        quantity:this.quantity,
-        productId:this.selectedProduct.productId,
-        size:this.selectedSize,
-  
-      }
-      const neworder :AddOrder ={
-        totalamount:orprice,
-        userId:3,
-        order_date:new Date(),
-       orderDetails:[orderdetails]
-      };
-      
-      this.addorderservices.addOrder(neworder).subscribe(
-        response => {
-          console.log("Order added successfully", response);
-          this.editquantity();
-        },
-        error => {
-          console.error("Error adding order", error);
-        }
-      );
+  selectSize(size: string): void {
+    if (size) {
+      this.selectedSize = size;
+      console.log("Size selected:", this.selectedSize);
     } else {
-      console.log("No product selected.");
+      console.log("Please select a size.");
     }
   }
+  
+  addtocart(): void {
+    if (this.UserId) {
+      if (this.selectedProduct) {
+        if (!this.selectedSize) {
+          this.snackBar.open('Please select a size before adding to the cart.', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+          });
+          return;
+        }
+  
+        const orprice = this.selectedProduct.price * this.quantity;
+  
+        const orderdetails: OrderDetails = {
+          orderPrice: this.selectedProduct.price,
+          quantity: this.quantity,
+          productId: this.selectedProduct.productId,
+          size: this.selectedSize,
+        };
+  
+        const neworder: AddOrder = {
+          totalamount: orprice,
+          userId: this.UserId,
+          order_date: new Date(),
+          orderDetails: [orderdetails],
+        };
+  
+        this.addorderservices.addOrder(neworder).subscribe(
+          response => {
+            console.log("Order added successfully", response);
+            this.editquantity();
+          },
+          error => {
+            console.error("Error adding order", error);
+          }
+        );
+      } else {
+        console.log("No product selected.");
+      }
+    } else {
+      console.log("No user logged in.");
+      this.router.navigate(['/login']);
+    }
+  }
+  
   selectandadd(product: Product){
    
     this.selectProduct(product);

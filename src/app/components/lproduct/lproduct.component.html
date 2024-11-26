@@ -27,12 +27,14 @@
             [ngClass]="{ 'selected': selectedSize === size }"
             (click)="selectedSize = size"
             class="size-button"
+            (change)="selectSize(size)"
           >
             {{ size }}
           </button>
         </div>
+       
       </div>
-      <!-- <button (click)="selectandadd(product)">Add To Cart</button> -->
+    
     </div>
   </div>
   
