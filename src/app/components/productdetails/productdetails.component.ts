@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AddOrderService } from '../../services/add-order.service';
@@ -12,6 +12,7 @@ import { CreateProduct, Updateproduct } from '../../models/create-product';
 import { FproductComponent } from '../fproduct/fproduct.component';
 import { FooterComponent } from '../footer/footer.component';
 import { NavComponent } from '../nav/nav.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-productdetails',
@@ -25,7 +26,7 @@ export class ProductdetailsComponent  implements OnInit {
   orderPrice: number = 0;
   quantity: number = 1;
   selectedSize: string = "";
-  constructor(private productservice:ProductService,private route:ActivatedRoute,private addorderservices:AddOrderService){}
+  constructor(private productservice:ProductService,private route:ActivatedRoute,private addorderservices:AddOrderService, private router:Router, private snackBar: MatSnackBar){}
   
   ngOnInit(): void {
     const productId = +this.route.snapshot.paramMap.get('id')!;
@@ -64,38 +65,50 @@ export class ProductdetailsComponent  implements OnInit {
     return `data:image/png;base64,${base64Image}`;
   }
   addtoorder():void{
-    if (this.product){
-      const userid = localStorage.getItem('userId'); 
-      if (!userid) {
-        console.error("User ID not found in localStorage");
-        return;
-      }
-      const orprice=this.product.price*this.quantity;
-
-      const orderdetails:OrderDetails={
-        orderPrice:this.product.price,
-        quantity:this.quantity,
-        productId:this.product.productId,
-        size:this.selectedSize,
-
-      }
-      const neworder :AddOrder ={
-        totalamount:orprice,
-        userId:parseInt(userid),
-        order_date:new Date(),
-       orderDetails:[orderdetails]
-      };
-    
-      this.addorderservices.addOrder(neworder).subscribe(response=>{
-            console.log("this added succeffly",response);
+    const userid = localStorage.getItem('userId'); 
+    if (userid) {
+      if (this.product) {
+        if (!this.selectedSize) {
+          this.snackBar.open('Please select a size before adding to the cart.', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+          });
+          return;
+        }
+  
+        const orprice = this.product.price * this.quantity;
+  
+        const orderdetails: OrderDetails = {
+          orderPrice: this.product.price,
+          quantity: this.quantity,
+          productId: this.product.productId,
+          size: this.selectedSize,
+        };
+  
+        const neworder: AddOrder = {
+          totalamount: orprice,
+          userId:parseInt(userid,10),
+          order_date: new Date(),
+          orderDetails: [orderdetails],
+        };
+  
+        this.addorderservices.addOrder(neworder).subscribe(
+          response => {
+            console.log("Order added successfully", response);
             this.editquantity();
-            
-      },error=>{
-        console.log("error when added",error);
-      });
-      
-     
+          },
+          error => {
+            console.error("Error adding order", error);
+          }
+        );
+      } else {
+        console.log("No product selected.");
       }
+    } else {
+      console.log("No user logged in.");
+      this.router.navigate(['/login']);
+    }
      
     }
     editquantity(){

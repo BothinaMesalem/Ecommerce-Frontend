@@ -9,7 +9,7 @@ import { Order } from '../../models/order';
 import { AddOrderService } from '../../services/add-order.service';
 import { NavComponent } from '../nav/nav.component';
 import { PaymentComponent } from '../payment/payment.component';
-import { PaymentService } from '../../services/payment.service'; // import PaymentService
+import { PaymentService } from '../../services/payment.service'; 
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { RouterLink } from '@angular/router';
 
@@ -71,11 +71,11 @@ export class CheckoutComponent implements OnInit {
     }, 0);
   }
 
-  // Modify the Add() method to handle the payment on order placement
+  
   handlePayment() {
     const amount = this.getAllOrdersTotal();
     const paymentData = {
-      amount: amount * 100, // Multiply by 100 to convert to cents
+      amount: amount * 100, 
       userId: this.userid,
     };
 
@@ -105,6 +105,7 @@ export class CheckoutComponent implements OnInit {
     console.log("Sending Checkout Data:", this.checkout);
     this.checkoutService.Add(this.checkout).subscribe(response => {
       console.log("Added Successfully", response);
+      this.UpdateStatus();
     }, error => {
       console.log("error", error);
     });

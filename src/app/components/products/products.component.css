@@ -19,6 +19,7 @@
     font-family: sans-serif;
     font-weight: bold;
     margin-top: 10px;
+    font-size: 1.2em;
 }
 .product p{
     color: gray;
@@ -31,17 +32,19 @@ button {
     border: 1px solid gray;
     background-color: white;
     color: gray;
+   margin-left: 10px;
     
 }
-.size-buttons{
-margin-left: 20px;
-}
+/* .size-buttons{
+margin-left: 10px;
+
+} */
 
 .size {
     display: flex;
     flex-direction: row;
-    gap: 5px; 
-    margin-left: 10px;
+  
+ 
 }
 .phome{
     margin-top: 30px;

@@ -1,5 +1,6 @@
 <app-nav></app-nav>
-<section class="about-section">
+
+<section class="about-section container">
     <h1>About</h1>
     <div class="underline"></div>
     <p class="subheading">
@@ -12,29 +13,32 @@
         Nulla vel quam lobortis, varius est scelerisque, dapibus nisl.
     </p>
 </section>
-<section class="how-it-started">
-   
-    <div class="content">
-        <div class="text-section">
-            <h2>Vel mauris molestie dignissim</h2>
-            <p>
-                Proin eu ante vel mauris molestie dignissim non eget nunc. Integer ac massa orci. Suspendisse vulputate semper nunc eget rhoncus.
-            </p>
-            <p>
-                Praesent vel faucibus ligula. Sed sit amet ipsum eget velit aliquet faucibus. Maecenas et odio id turpis sollicitudin pulvinar sit amet vitae augue. 
-                Phasellus nec ultricies arcu. Quisque efficitur tellus sit amet bibendum molestie. Duis id egestas odio. Phasellus lacinia ex quis faucibus tempor. Sed feugiat.
-            </p>
-        </div>
-        
-        <div class="image-section">
-            <img src="../../../assets/Image/About.png" width="300" height="340" alt="Decorative image">
-        </div>
-     
-    </div>
+
+<section class="how-it-started container">
     <h1>How it Started</h1>
     <div class="underline"></div>
     <p class="intro-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
     </p>
+
+    <div class="content row">
+        <!-- Text Section -->
+        <div class="col-md-6 text-section">
+            <h2>Vel mauris molestie dignissim</h2>
+            <h5>
+                Proin eu ante vel mauris molestie dignissim non eget nunc. Integer ac massa orci. Suspendisse vulputate semper nunc eget rhoncus.
+            </h5>
+            <p>
+                Praesent vel faucibus ligula. Sed sit amet ipsum eget velit aliquet faucibus. Maecenas et odio id turpis sollicitudin pulvinar sit amet vitae augue. 
+                Phasellus nec ultricies arcu. Quisque efficitur tellus sit amet bibendum molestie. Duis id egestas odio. Phasellus lacinia ex quis faucibus tempor. Sed feugiat.
+            </p>
+        </div>
+
+        <!-- Image Section -->
+        <div class="col-md-6 image-section">
+            <img src="../../../assets/Image/About.png" class="img-fluid" alt="Decorative image">
+        </div>
+    </div>
 </section>
+
 <app-footer></app-footer>

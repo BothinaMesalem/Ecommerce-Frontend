@@ -1,9 +1,8 @@
 
 .about-section {
     text-align: center;
-    max-width: 800px;
+    max-width: 100%;
     padding: 20px;
-    margin-left: 330px;
 }
 
 .about-section h1 {
@@ -32,13 +31,11 @@
     line-height: 1.6;
 }
 
-
 .how-it-started {
     text-align: center;
-    max-width: 900px;
+    max-width: 100%;
     padding: 20px;
     margin-top: 50px;
-    margin-left: 330px;
 }
 
 .how-it-started h1 {
@@ -46,13 +43,6 @@
     font-size: 3em;
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.underline {
-    width: 50px;
-    height: 3px;
-    background-color: black;
-    margin: 10px auto;
 }
 
 .intro-text {
@@ -63,20 +53,30 @@
 
 .content {
     display: flex;
-    /* gap: 20px; */
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .text-section {
-    flex: 1;
-    padding: 20px;
     background-color: #fbece9;
+    padding: 20px;
     color: #333;
+    height: 400px;
+    width: 100%; 
+    max-width: 500px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .text-section h2 {
     font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-section h5 {
+    font-size: 1.3em;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -88,11 +88,40 @@
 }
 
 .image-section {
-    flex: 1;
-   
+    width: 100%;
+    max-width: 500px;
+
 }
 
 .image-section img {
     width: 100%;
-    
+    height: 400px;
+    margin-left: -500px;
+}
+
+
+@media (max-width: 768px) {
+    .about-section h1 {
+        font-size: 2.5em;
+    }
+
+    .how-it-started h1 {
+        font-size: 2.5em;
+    }
+
+    .content {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .text-section {
+        width: 100%; 
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .image-section img {
+        width: 100%;
+        height: auto;
+    }
 }
