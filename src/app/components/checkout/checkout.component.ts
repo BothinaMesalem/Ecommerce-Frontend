@@ -12,6 +12,9 @@ import { PaymentComponent } from '../payment/payment.component';
 import { PaymentService } from '../../services/payment.service'; 
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-checkout',
@@ -31,7 +34,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private checkoutService: CheckoutService,
     private orderServices: AddOrderService,
-    private paymentService: PaymentService 
+    private paymentService: PaymentService ,
+    private router :Router
   ) {}
 
   async ngOnInit():  Promise<void> {
@@ -102,12 +106,14 @@ export class CheckoutComponent implements OnInit {
   
   Add() {
     this.checkout.country = Number(this.checkout.country);
-    console.log("Sending Checkout Data:", this.checkout);
-    this.checkoutService.Add(this.checkout).subscribe(response => {
-      console.log("Added Successfully", response);
-      this.UpdateStatus();
-    }, error => {
-      console.log("error", error);
+    this.checkoutService.Add(this.checkout).subscribe({
+      next: (response) => {
+        console.log("Checkout data added successfully", response);
+        this.UpdateStatus();
+      },
+      error: (error) => {
+        console.error("Error adding checkout data:", error);
+      }
     });
   }
 
@@ -137,6 +143,23 @@ export class CheckoutComponent implements OnInit {
       this.AddandPayment();
     } else if (this.paymentMethod === 'onDelivery') {
       this.Add();
+      Swal.fire({
+        icon: 'success',
+        title: 'Data Saved Successfully',
+        text: 'Your checkout details have been added.',
+        showConfirmButton: true,
+        timer: 2000
+      }).then(() => {
+        this.router.navigate(['/Home']);
+        this.UpdateStatus();
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Something went wrong. Please try again.',
+        showConfirmButton: true
+      });
     }
   }
 }
